@@ -1,0 +1,26 @@
+.login-signup-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #0f1653;
+
+ 
+    .login-signup-container {
+        background-color: #d3d3d3;
+        padding: 50px;
+        opacity: 100;
+        margin-top: 100px;
+        border-radius: 20px;
+        width: 50vw;
+
+        .input-fields {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+    }
+}
+
+
