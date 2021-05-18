@@ -1,10 +1,15 @@
 import React from 'react';
-import './homepage.styles.scss';
+import HeroSection from '../components/HeroSection';
+import Cards from '../components/Cards';
 
-const HomePage = () => {
-    return (
-        <div className = 'home-page'>This is home page.</div>
-    ) 
+function Home() {
+  return (
+    <>
+      <HeroSection />
+      <Cards />
+    </>
+  );
 }
 
-export default HomePage;
+export default Home;
+
