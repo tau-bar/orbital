@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './hamburger.styles.scss';
 import './hamburger-menu.styles.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,6 +12,11 @@ const Hamburger = () => {
         event.preventDefault();
         setIsActive(!isActive);
     }
+
+    const linkOnClick = () => {
+      setIsActive(false);
+    }
+
     return (
         <div className = 'hamburger-component'>
         <div onClick = {(event) => hamburgerOnClick(event)} class={`menu ${isActive ? "open" : ""}`}>
@@ -27,6 +33,7 @@ const Hamburger = () => {
       <div class={`menu-overlay ${isActive ? "open" : ""}`}>
       <p className='hm-link'>Virus on body</p>
       <p className='hm-link'>Map simulation</p>
+      <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>
       </div>
         </div>
     )
