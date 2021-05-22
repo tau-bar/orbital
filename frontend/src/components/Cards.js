@@ -17,47 +17,47 @@ function Cards(props) {
               onClick={() => props.history.push('/virus')}
             />
             <CardItem
-              src='/images/img-1.jpeg'
+              src='/images/fla.jpeg'
               label='Flavivirus'
               path='/services'
             />
             <CardItem
-              src='/images/img-1.jpeg'
+              src='/images/mor.jpeg'
               label='Mobillivirus'
               path='/services'
             />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='/images/img-1.jpeg'
-              label='Coronavirus'
+              src='/images/yersenia.jpeg'
+              label='Yersenia'
               path='/services'
             />
             <CardItem
-              src='/images/img-1.jpeg'
-              label='Flavivirus'
+              src='/images/ebola.jpeg'
+              label='Ebolavirus'
               path='/services'
             />
             <CardItem
-              src='/images/img-1.jpeg'
-              label='Mobillivirus'
+              src='/images/orthopox.jpeg'
+              label='Orthopoxvirus'
               path='/services'
             />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='/images/img-1.jpeg'
-              label='Coronavirus'
+              src='/images/beta.jpeg'
+              label='Betacoronavirus'
               path='/services'
             />
             <CardItem
               src='/images/img-1.jpeg'
-              label='Flavivirus'
+              label='Custom-one'
               path='/services'
             />
             <CardItem
               src='/images/img-1.jpeg'
-              label='Mobillivirus'
+              label='Custom-two'
               path='/services'
             />
           </ul>

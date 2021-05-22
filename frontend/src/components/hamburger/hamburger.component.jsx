@@ -35,9 +35,7 @@ const Hamburger = () => {
       <div class={`menu-overlay ${isActive ? "open" : ""}`}>
       <p className='hm-link'>Virus on body</p>
       <p className='hm-link'>Map simulation</p>
-      <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>
-      <Link onClick = {linkOnClick} to = '/models' className = 'hm-link'>Login</Link>
-      
+      <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>      
       </div>
         </div>
     )

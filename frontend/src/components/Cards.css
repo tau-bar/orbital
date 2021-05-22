@@ -35,7 +35,7 @@ h1 {
 .cards__item__pic-wrap {
   position: relative;
   overflow: hidden;
-  background: rgb(5, 5, 5);
+  background: black;
   border-radius: 50%;
 }
 
