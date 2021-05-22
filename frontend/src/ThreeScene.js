@@ -33,10 +33,10 @@ class App extends Component {
         this.camera = new THREE.PerspectiveCamera(
             50, 
             width/height, 
-            0.8, 
-            100 
+            1, 
+            100
         );
-        this.camera.position.z = 500; 
+        this.camera.position.z = 50; 
         this.controls = new OrbitControls( this.camera, this.mount );
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( width, height );

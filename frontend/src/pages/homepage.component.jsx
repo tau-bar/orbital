@@ -30,7 +30,6 @@ function Home() {
       </ScrollPage>
       </ScrollContainer>
       <Cards />  
-      <Container />    
     </>
   );
 }
