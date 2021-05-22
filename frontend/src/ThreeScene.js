@@ -5,7 +5,7 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 
 const style = {
-    height: 500 
+    height: 500
 };
 
 class App extends Component {
@@ -26,12 +26,12 @@ class App extends Component {
         this.controls.dispose();
     }
     sceneSetup = () => {
-        const width = this.mount.clientWidth;
-        const height = this.mount.clientHeight;
+        const width = this.mount.clientWidth / 2;
+        const height = this.mount.clientHeight / 2;
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
-            2, 
+            50, 
             width/height, 
             0.8, 
             100 

@@ -5,6 +5,7 @@ import Info from '../components/Information';
 import Details from '../components/Details';
 import Container from '../ThreeScene';
 
+
 import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, Move, MoveIn, MoveOut, Sticky, StickyIn, ZoomIn } from "react-scroll-motion";
 
 
