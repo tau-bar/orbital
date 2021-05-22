@@ -1,0 +1,30 @@
+.information {
+    padding: 6rem;
+    width:150vh;
+    height: 70vh;
+    background-image: url('https://specials-images.forbesimg.com/imageserve/1203426591/960x0.jpg?cropX1=1126&cropX2=8882&cropY1=0&cropY2=4360');
+    padding-left: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+
+.box {
+    height: 187px;
+    width: 500px;
+    margin-right: 5.5px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-align: left;
+}
+
+.box {
+    position: relative;
+}
+.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0px;
+}

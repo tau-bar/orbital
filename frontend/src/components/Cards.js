@@ -1,8 +1,9 @@
 import React from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
+import { withRouter } from 'react-router-dom';
 
-function Cards() {
+function Cards(props) {
   return (
     <div className='cards'>
       <h1>Understanding Viruses</h1>
@@ -12,7 +13,8 @@ function Cards() {
             <CardItem
               src='/images/img-1.jpeg'
               label='Coronavirus'
-              path='/services'
+              path='../Coronovirus'
+              onClick={() => props.history.push('/virus')}
             />
             <CardItem
               src='/images/img-1.jpeg'
@@ -66,4 +68,4 @@ function Cards() {
   );
 }
 
-export default Cards;
+export default withRouter(Cards);

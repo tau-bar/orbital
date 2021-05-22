@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './hamburger.styles.scss';
 import './hamburger-menu.styles.css';
 import { Link } from 'react-router-dom';
+import Container from '../../ThreeScene';
+import { BrowserRouter, Route, } from 'react-router-dom'
 
 
 
@@ -34,6 +36,8 @@ const Hamburger = () => {
       <p className='hm-link'>Virus on body</p>
       <p className='hm-link'>Map simulation</p>
       <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>
+      <Link onClick = {linkOnClick} to = '/models' className = 'hm-link'>Login</Link>
+      
       </div>
         </div>
     )
