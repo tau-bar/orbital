@@ -13,7 +13,7 @@ function Home() {
   const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
   const FadeUp = batch(Fade(), Move(), Sticky());
   return (
-    <>
+    <div>
       <HeroSection />
       <ScrollContainer>
       <ScrollPage page={1}>
@@ -30,7 +30,7 @@ function Home() {
       </ScrollPage>
       </ScrollContainer>
       <Cards />  
-    </>
+    </div>
   );
 }
 
