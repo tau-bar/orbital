@@ -5,7 +5,7 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 
 const style = {
-    height: 500
+    height: 500,
 };
 
 class App extends Component {
