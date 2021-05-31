@@ -3,10 +3,10 @@ import './hamburger.styles.scss';
 import './hamburger-menu.styles.scss';
 import { Link } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
+import { withRouter } from 'react-router-dom';
 
 
-
-const Hamburger = () => {
+const Hamburger = (props) => {
     const [isActive, setIsActive] = useState(false);
 
     const hamburgerOnClick = (event) => {
@@ -16,13 +16,15 @@ const Hamburger = () => {
 
     const linkOnClick = () => {
       setIsActive(false);
+      props.history.push('/login')
     }
 
+    console.log(props);
     return (
         <div className = 'hamburger-component'>
         <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
         <div className = 'login-button'>
-          <CustomButton>Log in/Sign up</CustomButton>
+          <CustomButton onClick = {linkOnClick} >Log in/Sign up</CustomButton>
         </div>
         <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
@@ -38,10 +40,10 @@ const Hamburger = () => {
         <div class={`menu-overlay ${isActive ? "open" : ""}`}>
         <p className='hm-link'>Virus on body</p>
         <p className='hm-link'>Map simulation</p>
-        <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>      
+        <Link onClick = {(linkOnClick)} to = '/login' className = 'hm-link'>Login</Link>      
         </div>
         </div>
     )
 }
 
-export default Hamburger;
+export default withRouter(Hamburger);

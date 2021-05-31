@@ -62,7 +62,7 @@ const SignUpPage = () => {
             <div className = 'login-signup-page'>
                 <Container className = 'login-signup-container'> 
                     <div>
-                        <h1>Sign Up</h1>
+                        <h1 className = 'loginsignuptitle'>Sign Up</h1>
                     </div>
                     <form onSubmit = {onSubmit}>
                       <CustomTextField
