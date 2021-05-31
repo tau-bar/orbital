@@ -8,6 +8,7 @@ import './ThreeScene.css';
 const style = {
     height: "15vh",
     width: "80vh"
+
 };
 
 class App extends Component {

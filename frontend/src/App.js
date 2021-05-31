@@ -16,7 +16,7 @@ function App() {
         <Route exact path = "/" component = {HomePage}/>
         <Route exact path = "/login" component = {LoginPage}/>
         <Route exact path = "/sign-up" component = {SignUpPage}/>
-        <Route exact path = "/virus" component = {VirusPage} ></Route>
+        <Route path = "/virus" component = {VirusPage} ></Route>
         <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
       </Switch>
     </div>

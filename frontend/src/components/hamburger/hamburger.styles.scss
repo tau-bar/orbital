@@ -1,7 +1,20 @@
-.menu-overlay {
+@import '../../breakpoints.settings.scss';
+
+.hamburger-component {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  background-color: black;
+  z-index: 1000;
+}
+
+.title-logo {
+  padding-left: 50px;
+  text-decoration: none;
+
+  .logo-text {
+    font-weight: 300;
+    font-size: 2rem;
+  }
 }
 
 .hm-link {
@@ -10,3 +23,21 @@
   margin: 30px;
   font-weight: bold;
 } 
+
+.login-button {
+  position: absolute;
+  right: 100px;
+  top: 20px;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .title-logo {
+    padding-left: 20px;
+  }
+
+  .login-button {
+    position: absolute;
+    right: 75px;
+    top: 25px;
+  }
+}

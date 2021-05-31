@@ -1,21 +1,20 @@
 import React from 'react';
 
-function CardItem(props) {
+const CardItem = ({ onClick, label, src, text }) => {
   return (
   
-      <li onClick = {props.onClick} className='cards__item'>
-        
-          <figure className='cards__item__pic-wrap' data-category={props.label}>
+      <div className='cards__item'>
+          <figure onClick = {onClick} className='cards__item__pic-wrap' data-category={label}>
             <img
               className='cards__item__img'
-              alt='Travel Image'
-              src={props.src}
+              alt={label}
+              src={src}
             />
           </figure>
           <div className='cards__item__info'>
-            <h5 className='cards__item__text'>{props.text}</h5>
+            <h5 className='cards__item__text'>{text}</h5>
           </div>
-      </li>
+      </div>
   );
 }
 
