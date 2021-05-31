@@ -1,5 +1,4 @@
 .information {
-    padding: 6rem;
     width:150vh;
     height: 70vh;
     background-image: url('https://specials-images.forbesimg.com/imageserve/1203426591/960x0.jpg?cropX1=1126&cropX2=8882&cropY1=0&cropY2=4360');
@@ -26,5 +25,5 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    top: 0px;
+    top: 20vh;
 }

@@ -14,7 +14,23 @@ function Home() {
   const FadeUp = batch(Fade(), Move(), Sticky());
   return (
     <div>
-  
+    <HeroSection />
+    <ScrollContainer>
+    <ScrollPage page={1}>
+      <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
+      <Info/>
+      </Animator>
+    </ScrollPage>
+    </ScrollContainer>
+    <ScrollContainer>
+    <ScrollPage page={2}>
+      <Animator animation={FadeUp}>
+      <Details/>
+      </Animator>
+    </ScrollPage>
+    </ScrollContainer>
+    <Cards />  
+
     </div>
   );
 }

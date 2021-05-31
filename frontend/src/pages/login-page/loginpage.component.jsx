@@ -24,7 +24,7 @@ function LoginPage() {
             <div className = 'login-signup-page'>
                 <Container className = 'login-signup-container'> 
                     <div>
-                        <h1>Login</h1>
+                        <h1 className = 'loginsignuptitle'>Login</h1>
                     </div>
                     <form onSubmit = {onSubmit}>
                       <CustomTextField

@@ -119,6 +119,3 @@ class Container extends React.Component {
 }
 
 export default Container;
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Container />, rootElement);
