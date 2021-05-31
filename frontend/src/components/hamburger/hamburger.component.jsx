@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './hamburger.styles.scss';
-import './hamburger-menu.styles.css';
+import './hamburger-menu.styles.scss';
 import { Link } from 'react-router-dom';
-import Container from '../../ThreeScene';
-import { BrowserRouter, Route, } from 'react-router-dom'
+import CustomButton from '../custom-button/custom-button.component';
 
 
 
@@ -21,7 +20,11 @@ const Hamburger = () => {
 
     return (
         <div className = 'hamburger-component'>
-        <div onClick = {(event) => hamburgerOnClick(event)} class={`menu ${isActive ? "open" : ""}`}>
+        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
+        <div className = 'login-button'>
+          <CustomButton>Log in/Sign up</CustomButton>
+        </div>
+        <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
         <a href="#" class="menu-link">
           <span class="menu-icon">
@@ -32,11 +35,11 @@ const Hamburger = () => {
         </a>
       </div>
     
-      <div class={`menu-overlay ${isActive ? "open" : ""}`}>
-      <p className='hm-link'>Virus on body</p>
-      <p className='hm-link'>Map simulation</p>
-      <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>      
-      </div>
+        <div class={`menu-overlay ${isActive ? "open" : ""}`}>
+        <p className='hm-link'>Virus on body</p>
+        <p className='hm-link'>Map simulation</p>
+        <Link onClick = {linkOnClick} to = '/login' className = 'hm-link'>Login</Link>      
+        </div>
         </div>
     )
 }
