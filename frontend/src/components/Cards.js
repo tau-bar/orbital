@@ -32,6 +32,7 @@ const Cards = (props) => {
     <div className='cards'>
       <h1>Understanding Viruses</h1>
       <div className='cards__container'>
+
           <div className='cards__items'>
           {
             Object.keys(virusData).map((key) => {

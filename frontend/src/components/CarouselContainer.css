@@ -1,12 +1,14 @@
-.details {
+.carousel {
     padding: 6rem;
-    width:170vh;
-    height: 100vh;
-    background-image: url('https://archziner.com/wp-content/uploads/2020/08/aesthetic-computer-wallpaper-black-background-with-rainbow-neon-colors-gradually-changing.jpg');
+    height: 70vh;
     padding-left: 70px;
     background-size: cover;
     background-repeat: no-repeat;
+    width:100%;
+    background-image: url('https://www.solidbackgrounds.com/images/950x350/950x350-black-solid-color-background.jpg');
+  
   }
+
 
 .box {
     height: 187px;
