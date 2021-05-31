@@ -11,7 +11,7 @@ function Cards(props) {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              src='/images/corona2.jpeg'
+              src='/images/corona.jpeg'
               label='Coronavirus'
               path='../Coronovirus'
               onClick={() => props.history.push('/virus')}
@@ -29,34 +29,34 @@ function Cards(props) {
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='/images/yersenia3.jpeg'
+              src='/images/yersenia.jpeg'
               label='Yersenia'
               path='/services'
             />
             <CardItem
-              src='/images/ebola2.jpeg'
+              src='/images/ebola.jpeg'
               label='Ebolavirus'
               path='/services'
             />
             <CardItem
-              src='/images/ortho4.jpeg'
+              src='/images/ortho.jpeg'
               label='Orthopoxvirus'
               path='/services'
             />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='/images/corona2.jpeg'
+              src='/images/corona.jpeg'
               label='Betacoronavirus'
               path='/services'
             />
             <CardItem
-              src='/images/corona2.jpeg'
+              src='/images/corona.jpeg'
               label='Custom-one'
               path='/services'
             />
             <CardItem
-              src='/images/corona2.jpeg'
+              src='/images/corona.jpeg'
               label='Custom-two'
               path='/services'
             />

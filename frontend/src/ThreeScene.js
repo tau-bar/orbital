@@ -3,9 +3,11 @@ import ReactDOM from "react-dom";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
+import './ThreeScene.css';
 
 const style = {
-    height: 500
+    height: "15vh",
+    width: "80vh"
 };
 
 class App extends Component {
@@ -25,30 +27,34 @@ class App extends Component {
         window.cancelAnimationFrame(this.requestID);
         this.controls.dispose();
     }
+
     sceneSetup = () => {
         const width = this.mount.clientWidth / 2;
-        const height = this.mount.clientHeight / 2;
+        const height = this.mount.clientHeight;
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
-            50, 
+            300, 
             width/height, 
-            1, 
-            100
+            2, 
+            300
         );
-        this.camera.position.z = 50; 
+        this.camera.position.z = 5; 
         this.controls = new OrbitControls( this.camera, this.mount );
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize( width, height );
+        //first
+        this.renderer.setSize( width *5 , height * 5) ;
         this.mount.appendChild( this.renderer.domElement );
     };
 
     addLights = () => {
         const lights = [];
+        //color code here
+        const color = new THREE.Color(0x00ff59);
 
-        lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-        lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-        lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+        lights[ 0 ] = new THREE.PointLight( color, 1, 0 );
+        lights[ 1 ] = new THREE.PointLight( color, 1, 0 );
+        lights[ 2 ] = new THREE.PointLight( color, 1, 0 );
 
         lights[ 0 ].position.set( 0, 2000, 0 );
         lights[ 1 ].position.set( 1000, 2000, 1000 );
@@ -64,13 +70,16 @@ class App extends Component {
         this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
     };
 
+    /*
     handleWindowResize = () => {
         const width = this.mount.clientWidth;
         const height = this.mount.clientHeight;
-        this.renderer.setSize( width, height );
+        //second
+        this.renderer.setSize( width, height);
         this.camera.aspect = height;
         this.camera.updateProjectionMatrix();
     };
+    */
 
     // Boilerplate code ends here
 
@@ -100,7 +109,22 @@ class App extends Component {
     };
 
     render() {
-        return <div style={style} ref={ref => (this.mount = ref)} />;
+        return (
+        <div className="full">
+        <div className="top">
+            <div style={style} ref={ref => (this.mount = ref)} />
+            <div className="topRight">
+                <p>
+                    Introducing Interactive Simulation 
+                    In the coronavirus pandemic, many people are not taking the necessary 
+                    precautions because they are misinformed. The science behind how virus works, 
+                    and the human body's immune system is extremely complex. An interactive platform 
+                    without jargons would better educate the public.
+                </p>
+            </div>
+        </div>
+        </div>
+        );
     }
 }
 
@@ -119,6 +143,4 @@ class Container extends React.Component {
 }
 
 export default Container;
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Container />, rootElement);
+ 

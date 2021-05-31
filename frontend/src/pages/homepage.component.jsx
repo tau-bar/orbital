@@ -4,6 +4,7 @@ import Cards from '../components/Cards';
 import Info from '../components/Information';
 import Details from '../components/Details';
 import Container from '../ThreeScene';
+import CarouselContainer from '../components/CarouselContainer';
 
 
 import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, Move, MoveIn, MoveOut, Sticky, StickyIn, ZoomIn } from "react-scroll-motion";
@@ -29,7 +30,8 @@ function Home() {
         </Animator>
       </ScrollPage>
       </ScrollContainer>
-      <Cards />  
+      <Cards /> 
+      <CarouselContainer />
     </>
   );
 }
