@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 const Cards = (props) => {
   const virusData = {
     coronavirus: {
-      src:'/images/corona2.jpeg'
+      src:'/images/corona.jpeg'
     },
     flavivirus: {
       src:'/images/fla.jpeg'
@@ -15,28 +15,27 @@ const Cards = (props) => {
       src:'/images/morbi.jpeg'
     },
     yersenia: {
-      src:'/images/yersenia3.jpeg'
+      src:'/images/yersenia.jpeg'
     },
     ebolavirus: {
-      src:'/images/ebola2.jpeg'
+      src:'/images/ebola.jpeg'
     },
     orthopoxvirus : {
-      src:'/images/ortho4.jpeg'
+      src:'/images/ortho.jpeg'
     },
     betacoronavirus: {
-      src:'/images/corona2.jpeg'
+      src:'/images/beta.jpeg'
     }
   }
 
   return (
     <div className='cards'>
-      <h1>Understanding Viruses</h1>
+      <h1 className = 'cards-title'>Understanding Viruses</h1>
       <div className='cards__container'>
 
           <div className='cards__items'>
           {
             Object.keys(virusData).map((key) => {
-              console.log(key)
               return(
                 <CardItem
                 src= {virusData[key].src}
