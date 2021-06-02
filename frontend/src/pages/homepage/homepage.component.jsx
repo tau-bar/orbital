@@ -1,15 +1,17 @@
 import React from 'react';
-import { Parallax } from 'react-parallax';
+import Container from './TopThree.js';
+import CarouselContainer from '../../components/CarouselContainer';
 import ParallaxTitle from '../../components/parallax-title/parallax-title.component';
 import ParallaxComponent from '../../components/parallax/parallax.component';
-import './homepage.styles.scss'
-import Container from './TopThree.js';
+import './homepage.styles.scss';
+import HeroSection from '../../components/HeroSection';
+import Cards from '../../components/Cards';
 
 function Home() {
 
   return (
     
-    <div style = {{paddingTop: '500px', paddingBottom: '500px'}}> 
+    <div> 
     <HeroSection />
     <Cards /> 
     <CarouselContainer />
