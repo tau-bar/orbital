@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './loginpage.styles.scss'
-import CustomTextField from '../../components/text-field/text-field.component';
 import Axios from 'axios';
 
 const SignUpPage = () => {

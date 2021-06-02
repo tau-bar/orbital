@@ -14,9 +14,9 @@ const Hamburger = (props) => {
         setIsActive(!isActive);
     }
 
-    const linkOnClick = () => {
+    const linkOnClick = (url) => () => {
       setIsActive(false);
-      props.history.push('/login')
+      props.history.push(url)
     }
     return (
         <div className = 'hamburger-component'>
@@ -38,7 +38,7 @@ const Hamburger = (props) => {
         <div class={`menu-overlay ${isActive ? "open" : ""}`}>
         <p className='hm-link'>Virus on body</p>
         <p className='hm-link'>Map simulation</p>
-        <Link onClick = {(linkOnClick)} to = '/login' className = 'hm-link'>Login</Link>      
+        <Link onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create new virus</Link>
         </div>
         </div>
     )
