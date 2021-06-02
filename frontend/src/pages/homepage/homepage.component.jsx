@@ -3,11 +3,17 @@ import { Parallax } from 'react-parallax';
 import ParallaxTitle from '../../components/parallax-title/parallax-title.component';
 import ParallaxComponent from '../../components/parallax/parallax.component';
 import './homepage.styles.scss'
+import Container from './TopThree.js';
 
 function Home() {
 
   return (
+    
     <div style = {{paddingTop: '500px', paddingBottom: '500px'}}> 
+    <HeroSection />
+    <Cards /> 
+    <CarouselContainer />
+    <Container />
     <ParallaxComponent imgSrc = "/images/sarsParallax.jpg" direction = "left">
         <ParallaxTitle>Sars</ParallaxTitle>
       </ParallaxComponent>
