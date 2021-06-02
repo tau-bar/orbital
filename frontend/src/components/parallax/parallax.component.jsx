@@ -1,7 +1,6 @@
 import React from 'react';
 import { Parallax } from 'react-parallax';
 import ParallaxContent from '../parallax-content/parallax-content.component';
-import ParallaxTitle from '../parallax-title/parallax-title.component';
 import './parallax.styles.scss';
 
 const ParallaxComponent = ({ children, imgSrc, direction, content, origin, year, deaths, type }) => (

@@ -6,6 +6,10 @@
     .parallax-list {
         display: flex;
         flex-direction: column;
+
+        .parallax-big-text {
+            margin-top: 0px;
+        }
     }
 
     .parallax-desc {
