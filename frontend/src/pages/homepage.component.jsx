@@ -3,7 +3,7 @@ import HeroSection from '../components/HeroSection';
 import Cards from '../components/Cards';
 import Info from '../components/Information';
 import Details from '../components/Details';
-import Container from '../ThreeScene';
+import Container from '../components/TopThree';
 import CarouselContainer from '../components/CarouselContainer';
 
 
@@ -32,6 +32,7 @@ function Home() {
       </ScrollContainer>
       <Cards /> 
       <CarouselContainer />
+      <Container />
     </>
   );
 }
