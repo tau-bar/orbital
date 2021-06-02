@@ -18,8 +18,6 @@ const Hamburger = (props) => {
       setIsActive(false);
       props.history.push('/login')
     }
-
-    console.log(props);
     return (
         <div className = 'hamburger-component'>
         <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>

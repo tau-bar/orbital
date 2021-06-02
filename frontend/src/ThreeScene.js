@@ -51,7 +51,7 @@ class App extends Component {
     addLights = () => {
         const lights = [];
         //color code here
-        const color = new THREE.Color(0x00ff59);
+        const color = new THREE.Color(0xff0000);
 
         lights[ 0 ] = new THREE.PointLight( color, 1, 0 );
         lights[ 1 ] = new THREE.PointLight( color, 1, 0 );
@@ -114,15 +114,6 @@ class App extends Component {
         <div className="full">
         <div className="top">
             <div style={style} ref={ref => (this.mount = ref)} />
-            <div className="topRight">
-                <p>
-                    Introducing Interactive Simulation 
-                    In the coronavirus pandemic, many people are not taking the necessary 
-                    precautions because they are misinformed. The science behind how virus works, 
-                    and the human body's immune system is extremely complex. An interactive platform 
-                    without jargons would better educate the public.
-                </p>
-            </div>
         </div>
         </div>
         );
