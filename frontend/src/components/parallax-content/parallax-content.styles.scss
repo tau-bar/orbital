@@ -1,0 +1,19 @@
+.parallax-content {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    
+    .parallax-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .parallax-desc {
+        padding-left: 30px;
+    }
+
+    &.light {
+        color: black;
+    }
+
+}

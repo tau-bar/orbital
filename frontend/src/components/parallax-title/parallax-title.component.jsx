@@ -1,9 +1,11 @@
 import React from 'react';
 import './parallax-title.styles.scss';
+import Flip from 'react-reveal/Flip';
 
 const ParallaxTitle = ({ children }) => (
+    
     <div className = 'parallax-title'>
-        {children}
+        <Flip top cascade>{children}</Flip>
     </div>
 )
 

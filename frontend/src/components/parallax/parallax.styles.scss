@@ -1,10 +1,14 @@
 .parallax-info-box {
-    width: 500px;
-    height: 300px;
-    font-size: 100px;
+    padding: 50px;
+    width: 70vw;
     color: white;
     border-radius: 30px;
     position: absolute;
     top: 20%;
     background-color: black;
+    
+    &.light {
+        color: black;
+        background-color: white;
+    }
 }
