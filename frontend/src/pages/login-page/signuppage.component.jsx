@@ -1,6 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
+import { Container, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
+import CustomTextField from '../../components/text-field/text-field.component';
 import Axios from 'axios';
+import ValidateTextField from '../../components/text-field/text-field.component';
+
+
+
+/*
+
+Taufiq code for reference in the future. I changed a bit.
 
 const SignUpPage = () => {
     const onSubmit = (event) => {
@@ -10,41 +20,7 @@ const SignUpPage = () => {
         console.log("else, create user in database");
         console.log("once successful, redirect to home page");
       }
-    
-    //What Reyaaz added starts here
-    const [Username, setUsername] = useState('')
-    const [Password, setPassword] = useState('')
-    const submitPassword = () => {
-      Axios.post('http://localhost:3001/api/insert',{
-        Username: Username, 
-        Password: Password,
-      }).then(() => {
-        alert("successful insert");
-      });
-    };
 
-    return (
-      <div className="App">
-        <h1>Sign Up</h1>
-        <div className="form">
-          <label>Username: </label>
-        <input type="text" name="Username" onChange={(e)=> {
-          setUsername(e.target.value)
-        }}/>
-          <label>Password: </label>
-        <input type="text" name="Password" onChange={(e)=> {
-          setPassword(e.target.value)
-        }}/>
-        <button onClick = {submitPassword}>Submit</button>
-        </div>
-      </div>
-    );
-  }
-  //What Reyaaz added ends here
-
-  //What Taufiq added. Commenting out to test whether can connect using 
-  //simple form
-  /*
     const [values, setValues] = React.useState({
     username: '',
     password: '',
@@ -85,7 +61,332 @@ const SignUpPage = () => {
                 </Container>
             </div>)
 }
+
 */
+
+
+
+
+
+function SignUpPage() {
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    console.log("errorId is:" + errorId);
+    console.log("Check if username already exists");
+    console.log("If exists, error");
+    console.log("else, create user in database");
+    console.log("once successful, redirect to home page");
+    const isValid = formValidation();
+  }
+
+  const [username, setUsername] = useState('')
+  const [Password, setPassword] = useState('')
+  const [C_Password, setCPassword] = useState('')
+  const [usernameErr, setUsernameErr] = useState({})
+  const [passwordErr, setPasswordErr] = useState({})
+  const [errorId, setErrorId] = useState({})
+
+
+  const formValidation = () => {
+    const usernameErr = {};
+    const passwordErr = {};
+    let errorIdHelper = 'primary';
+    let isValid = true;
+
+
+
+    if (username.trim().length < 5) {
+      usernameErr.usernameShort = "Username is too short";
+      errorIdHelper = 'secondary';
+      isValid = false;      
+    }
+
+    if (username.trim().length > 10) {
+      usernameErr.usernameLong = "Username is too long";
+      errorIdHelper = 'secondary';
+      isValid = false;
+    }
+
+    if (!username.includes("123")) {
+      usernameErr.userName123 = "Username must have 123";
+      errorIdHelper = 'secondary';
+      isValid = false;
+    }
+
+    setUsernameErr(usernameErr);
+    setPasswordErr(usernameErr);
+    setErrorId(errorIdHelper);
+    return isValid;
+
+
+
+  }
+  const submitReview = () => {
+    Axios.post('http://localhost:3001/api/insert',{
+      username: username, 
+      password: Password,
+    }).then(() => {
+      
+      if(C_Password !== Password){
+        errorId = "secondary"
+        alert("password does not match");
+      } else{
+        errorId = "primary"
+        alert("successful insert");
+        }
+        
+    });
+  };
+
+  return (
+    <div className = 'login-signup-page'>
+        <Container className = 'login-signup-container'> 
+            <div>
+                <h1 className = 'loginsignuptitle'>Sign Up</h1>
+            </div>
+            <form onSubmit = {onSubmit}>
+              <CustomTextField
+                label = "Username"
+                type = "username"
+                color = {errorId}
+                onChange={(e)=> {
+                  setUsername(e.target.value)
+                }}            
+              />
+              {Object.keys(usernameErr).map((key)=>{
+                  return <div style={{color: "red"}}>{usernameErr[key]}</div>
+                })}
+              <CustomTextField
+                label = "Password"
+                type = "password"
+                onChange={(e)=> {
+                  setPassword(e.target.value)
+                }}
+              />
+              <CustomTextField
+                label = "Confirm password"
+                type = "password"
+                onChange={(e)=> {
+                  setCPassword(e.target.value)
+                }}              
+              />
+              <Button onClick = {submitReview} variant="contained" color="primary" type = "submit">
+                Sign Up 
+              </Button>
+            </form>
+            <p>Already have an account? <Link to = "login">Log in.</Link></p>
+        </Container>
+    </div>);
+
+    
+}
 
 export default SignUpPage;
 
+
+
+
+
+/*
+import React from 'react';
+  
+class SignUpPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      input: {},
+      errors: {}
+    };
+     
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+     
+  handleChange(event) {
+    let input = this.state.input;
+    input[event.target.name] = event.target.value;
+  
+    this.setState({
+      input
+    });
+  }
+     
+  handleSubmit(event) {
+    event.preventDefault();
+  
+    if(this.validate()){
+        console.log(this.state);
+  
+        let input = {};
+        input["name"] = "";
+        input["email"] = "";
+        input["password"] = "";
+        input["confirm_password"] = "";
+        this.setState({input:input});
+  
+        alert('Demo Form is submited');
+    }
+  }
+  
+  validate(){
+      let input = this.state.input;
+      let errors = {};
+      let isValid = true;
+  
+          
+        if (input["password"] != input["confirm_password"]) {
+          isValid = false;
+          errors["password"] = "Passwords don't match.";
+        }
+      
+  
+      this.setState({
+        errors: errors
+      });
+  
+      return isValid;
+  }
+     
+  render() {
+    return (
+      <div>
+        <h1>React Password and Confirm Password Validation Example - ItSolutionStuff.com</h1>
+        <form onSubmit={this.handleSubmit}>
+  
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input 
+              type="text" 
+              name="name" 
+              value={this.state.input.name}
+              onChange={this.handleChange}
+              class="form-control" 
+              placeholder="Enter name" 
+              id="name" />
+  
+              <div className="text-danger">{this.state.errors.name}</div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input 
+              type="text" 
+              name="email" 
+              value={this.state.input.email}
+              onChange={this.handleChange}
+              class="form-control" 
+              placeholder="Enter email" 
+              id="email" />
+  
+              <div className="text-danger">{this.state.errors.email}</div>
+          </div>
+   
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input 
+              type="password" 
+              name="password" 
+              value={this.state.input.password}
+              onChange={this.handleChange}
+              class="form-control" 
+              placeholder="Enter password" 
+              id="password" />
+  
+              <div className="text-danger">{this.state.errors.password}</div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Confirm Password:</label>
+            <input 
+              type="password" 
+              name="confirm_password" 
+              value={this.state.input.confirm_password}
+              onChange={this.handleChange}
+              class="form-control" 
+              placeholder="Enter confirm password" 
+              id="confirm_password" />
+  
+              <div className="text-danger">{this.state.errors.confirm_password}</div>
+          </div>
+              
+          <input type="submit" value="Submit" class="btn btn-success" />
+        </form>
+      </div>
+    );
+  }
+}
+  
+export default SignUpPage;
+
+
+
+/*
+function SignUpPage() {
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    console.log("Check if username already exists");
+    console.log("If exists, error");
+    console.log("else, create user in database");
+    console.log("once successful, redirect to home page");
+  }
+
+  const [username, setUsername] = useState('')
+  const [Password, setPassword] = useState('')
+  const [C_Password, setCPassword] = useState('')
+  const submitReview = () => {
+    Axios.post('http://localhost:3001/api/insert',{
+      username: username, 
+      password: Password,
+    }).then(() => {
+      
+      if(C_Password !== Password){
+        alert("password does not match");
+      } else{
+        alert("successful insert");
+        }
+        
+    });
+  };
+
+  return (
+    <div className = 'login-signup-page'>
+        <Container className = 'login-signup-container'> 
+            <div>
+                <h1 className = 'loginsignuptitle'>Sign Up</h1>
+            </div>
+            <form onSubmit = {onSubmit}>
+              <CustomTextField
+                label = "Username"
+                type = "username"
+                onChange={(e)=> {
+                  setUsername(e.target.value)
+                }}
+              />
+              <CustomTextField
+                label = "Password"
+                type = "password"
+                onChange={(e)=> {
+                  setPassword(e.target.value)
+                }}
+              />
+              <CustomTextField
+                label = "Confirm password"
+                type = "password"
+                onChange={(e)=> {
+                  setCPassword(e.target.value)
+                }}              
+              />
+              <Button onClick = {submitReview} variant="contained" color="primary" type = "submit">
+                Sign Up 
+              </Button>
+            </form>
+            <p>Already have an account? <Link to = "login">Log in.</Link></p>
+        </Container>
+    </div>);
+    
+}
+
+export default SignUpPage;
+*/
