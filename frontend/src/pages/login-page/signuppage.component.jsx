@@ -69,7 +69,6 @@ const SignUpPage = () => {
 
 
 function SignUpPage() {
-
   let valid = true;
 
   const onSubmit = (event) => {
@@ -80,7 +79,6 @@ function SignUpPage() {
     console.log("once successful, redirect to home page");
     //const valid = formValidation();
   }
-
   const formValidation = () => {
     const usernameErr = {};
     const passwordErr = {};
@@ -118,6 +116,7 @@ function SignUpPage() {
 
 
   }
+
 
   const [username, setUsername] = useState('')
   const [Password, setPassword] = useState('')
@@ -175,7 +174,6 @@ function SignUpPage() {
                 <h1 className = 'loginsignuptitle'>Sign Up</h1>
             </div>
             <form onSubmit = {onSubmit}>
-              
             <ThemeProvider theme={theme}>
               <CustomTextField
                 label = "Username"
@@ -348,10 +346,7 @@ class SignUpPage extends React.Component {
     );
   }
 }
-  
 export default SignUpPage;
-
-
 
 /*
 function SignUpPage() {
