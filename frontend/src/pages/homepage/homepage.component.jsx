@@ -8,13 +8,17 @@ function Home() {
 
   return (
     <div> 
+    
     <HeroSection />
     <Cards /> 
     <Timeline/>
+
      </div>
     
   );
 }
 
 export default Home;
+
+
 

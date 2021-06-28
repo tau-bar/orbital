@@ -34,13 +34,15 @@ class App extends Component {
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
-            300, 
+            30, 
             width/height, 
             2, 
-            300
+            200
         );
         this.camera.position.z = 5; 
         this.controls = new OrbitControls( this.camera, this.mount );
+        this.controls.minDistance=3
+        this.controls.maxDistance=8
         this.renderer = new THREE.WebGLRenderer();
         //first
         this.renderer.setSize( width *5 , height * 5) ;
@@ -87,10 +89,29 @@ class App extends Component {
 
     loadTheModel = () => {
         const loader = new OBJLoader();
+        
 
         loader.load(
             '/assets/eleph.obj',
             ( object ) => {
+                var cent = new THREE.Vector3();
+                var size = new THREE.Vector3();
+                var bbox = new THREE.Box3().setFromObject(object);
+                bbox.getCenter(cent);
+                bbox.getSize(size);
+
+                //Rescale the object to normalized space
+                var maxAxis = Math.max(size.x, size.y, size.z);
+                object.scale.multiplyScalar(1.0 / maxAxis);
+
+                bbox.setFromObject(object);
+                bbox.getCenter(cent);
+                bbox.getSize(size);
+
+                object.position.x = -cent.x;
+                object.position.y = -cent.y;
+                object.position.z = -cent.z;
+
                 this.scene.add( object );
                 const el = this.scene.getObjectByName("Elephant_4");             
                 this.model = el;
@@ -110,11 +131,7 @@ class App extends Component {
 
     render() {
         return (
-        <div className="full">
-        <div className="top">
             <div style={style} ref={ref => (this.mount = ref)} />
-        </div>
-        </div>
         );
     }
 }
@@ -125,10 +142,10 @@ class Container extends React.Component {
     render() {
         const {isMounted = true, loadingPercentage = 0} = this.state;
         return (
-            <>
+            <div className="LoadingAnimation">
                 {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
                 {isMounted && loadingPercentage !== 100 && <div>Loading Coronavirus: {loadingPercentage}%</div>}
-            </>
+            </div>
         )
     }
 }

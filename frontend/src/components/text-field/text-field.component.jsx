@@ -10,7 +10,7 @@ const CustomTextField = ({color, type, label, helperText, onChange }) => {
     return (
         
         <div className = 'custom-text-field'>
-            <TextField id ="outline-basic" onChange = {e => onChange(e)} helperText = {helperText} label= {label} variant="outlined" type = {type}></TextField>
+            <TextField id ="outline-basic" onChange = {e => onChange(e)} helperText = {helperText} label= {label} variant="outlined" type = {type} color = {color}></TextField>
         </div>
     )
 }

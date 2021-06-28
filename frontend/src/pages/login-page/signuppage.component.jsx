@@ -5,7 +5,7 @@ import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import Axios from 'axios';
 import ValidateTextField from '../../components/text-field/text-field.component';
-
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 
 /*
@@ -69,25 +69,16 @@ const SignUpPage = () => {
 
 
 function SignUpPage() {
+  let valid = true;
 
   const onSubmit = (event) => {
     event.preventDefault()
-    console.log("errorId is:" + errorId);
     console.log("Check if username already exists");
     console.log("If exists, error");
     console.log("else, create user in database");
     console.log("once successful, redirect to home page");
-    const isValid = formValidation();
+    //const valid = formValidation();
   }
-
-  const [username, setUsername] = useState('')
-  const [Password, setPassword] = useState('')
-  const [C_Password, setCPassword] = useState('')
-  const [usernameErr, setUsernameErr] = useState({})
-  const [passwordErr, setPasswordErr] = useState({})
-  const [errorId, setErrorId] = useState({})
-
-
   const formValidation = () => {
     const usernameErr = {};
     const passwordErr = {};
@@ -99,19 +90,22 @@ function SignUpPage() {
     if (username.trim().length < 5) {
       usernameErr.usernameShort = "Username is too short";
       errorIdHelper = 'secondary';
-      isValid = false;      
+      isValid = false;  
+      valid = false;
     }
 
     if (username.trim().length > 10) {
       usernameErr.usernameLong = "Username is too long";
       errorIdHelper = 'secondary';
       isValid = false;
+      valid = false;
     }
 
     if (!username.includes("123")) {
       usernameErr.userName123 = "Username must have 123";
       errorIdHelper = 'secondary';
       isValid = false;
+      valid = false;
     }
 
     setUsernameErr(usernameErr);
@@ -122,7 +116,17 @@ function SignUpPage() {
 
 
   }
+
+
+  const [username, setUsername] = useState('')
+  const [Password, setPassword] = useState('')
+  const [C_Password, setCPassword] = useState('')
+  const [usernameErr, setUsernameErr] = useState({})
+  const [passwordErr, setPasswordErr] = useState({})
+  const [errorId, setErrorId] = useState({})
+
   const submitReview = () => {
+    changeTextColor();
     Axios.post('http://localhost:3001/api/insert',{
       username: username, 
       password: Password,
@@ -139,6 +143,30 @@ function SignUpPage() {
     });
   };
 
+  const Theme = {
+    palette: {
+      primary: {
+        main: "#FFFF00"
+      },
+      secondary: {
+        main: "#000000"
+      }
+    }
+  };
+
+  const theme = createMuiTheme(Theme);
+
+  const [result, setResult] = useState(false);
+
+  
+  const changeTextColor = () => {
+    let appo = formValidation();
+    setResult(appo);
+  };
+  
+
+
+  
   return (
     <div className = 'login-signup-page'>
         <Container className = 'login-signup-container'> 
@@ -146,14 +174,16 @@ function SignUpPage() {
                 <h1 className = 'loginsignuptitle'>Sign Up</h1>
             </div>
             <form onSubmit = {onSubmit}>
+            <ThemeProvider theme={theme}>
               <CustomTextField
                 label = "Username"
                 type = "username"
-                color = {errorId}
+                color = {result ? "secondary" : "primary"}
                 onChange={(e)=> {
                   setUsername(e.target.value)
                 }}            
               />
+              </ThemeProvider>
               {Object.keys(usernameErr).map((key)=>{
                   return <div style={{color: "red"}}>{usernameErr[key]}</div>
                 })}
@@ -316,10 +346,7 @@ class SignUpPage extends React.Component {
     );
   }
 }
-  
 export default SignUpPage;
-
-
 
 /*
 function SignUpPage() {
