@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import { withRouter } from 'react-router-dom';
+import {UserContext} from '../../context/UserContext'
 
 const SignUpPage = ({ history }) => {
+    const [user, setUser] = useContext(UserContext);
 
     const onSubmit = async (event) => {
         event.preventDefault()
@@ -20,9 +22,6 @@ const SignUpPage = ({ history }) => {
         // Check if passwords match & fit regex
         if (password !== confirmPassword) {
           alert("Passwords don't match!");
-          return;
-        } else if (!/"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/.test(password)) {
-          alert("Password must be minimum 8 characters and alphanumeric.")
           return;
         }
 
@@ -40,13 +39,14 @@ const SignUpPage = ({ history }) => {
             password: "",
             confirmPassword: "",
           });
+          setUser(username);
           history.push('/')
         } catch (error) {
           alert(error);
         }
       }
 
-    const [values, setValues] = React.useState({
+    const [values, setValues] = useState({
     username: '',
     password: '',
     confirmPassword : '',

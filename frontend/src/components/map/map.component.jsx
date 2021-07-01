@@ -25,7 +25,7 @@ const links = [
 const pandemics = ["covid-19", "ebola", "black plague"]
 
 const MapComponent = () => {
-    const [current, setCurrent] = useState(1);
+    const [current, setCurrent] = useState(0);
     return (
         <div className = 'map-component'>
             <div class="flourish-embed flourish-map" data-src={`visualisation/${links[current]}`}>
