@@ -3,10 +3,12 @@ import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
+import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
+import { withRouter } from 'react-router-dom';
 
 
 
-function LoginPage() {
+function LoginPage({ history }) {
       const [values, setValues] = React.useState({
         username: '',
         password: '',
@@ -16,9 +18,20 @@ function LoginPage() {
         setValues({ ...values, [prop]: event.target.value });
       };
 
-      const onSubmit = (event) => {
-        event.preventDefault()
-        console.log("Check if user exists and if password is correct, if incorrect display error message, else log him in. Change state of application to be logged in with the current user, and then redirect to home page.");
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+        const { username, password } = values;
+        try {
+          await auth.signInWithEmailAndPassword(username, password);
+          //resets the input field to blank after the user submits
+          setValues({
+            username: "",
+            password: "",
+          });
+          history.push('');
+        } catch (error) {
+          alert(error);
+        }
       }
       
       return (
@@ -27,9 +40,9 @@ function LoginPage() {
                     <div>
                         <h1 className = 'loginsignuptitle'>Login</h1>
                     </div>
-                    <form onSubmit = {onSubmit}>
+                    <form onSubmit = {handleSubmit}>
                       <CustomTextField
-                        label = "Username"
+                        label = "Email"
                         type = "username"
                         onChange = {handleChange("username")}
                       />
@@ -49,4 +62,4 @@ function LoginPage() {
 
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
