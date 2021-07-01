@@ -36,8 +36,8 @@ const Hamburger = (props) => {
       </div>
     
         <div class={`menu-overlay ${isActive ? "open" : ""}`}>
-        <p className='hm-link'>Virus on body</p>
         <p className='hm-link'>Map simulation</p>
+        <Link onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus On Body</Link>
         <Link onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create new virus</Link>
         </div>
         </div>

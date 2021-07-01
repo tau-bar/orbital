@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { useState } from "react";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import './ThreeScene.css';
+import './LoadingBar.css';
+import TriggersTooltips from './ToolTip';
+
 
 const style = {
     height: "15vh",
@@ -43,9 +47,13 @@ class App extends Component {
         this.controls = new OrbitControls( this.camera, this.mount );
         this.controls.minDistance=3
         this.controls.maxDistance=8
+        this.controls.autoRotate=true
+
+        this.controls.update();
+        
         this.renderer = new THREE.WebGLRenderer();
         //first
-        this.renderer.setSize( width *5 , height * 5) ;
+        this.renderer.setSize( width *4.5 , height * 6.1) ;
         this.mount.appendChild( this.renderer.domElement );
     };
 
@@ -68,6 +76,7 @@ class App extends Component {
     };
 
     startAnimationLoop = () => {
+        this.controls.update();
         this.renderer.render( this.scene, this.camera );
         this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
     };
@@ -107,10 +116,15 @@ class App extends Component {
                 bbox.setFromObject(object);
                 bbox.getCenter(cent);
                 bbox.getSize(size);
-
+                
                 object.position.x = -cent.x;
                 object.position.y = -cent.y;
                 object.position.z = -cent.z;
+
+            
+
+               
+
 
                 this.scene.add( object );
                 const el = this.scene.getObjectByName("Elephant_4");             
@@ -129,26 +143,50 @@ class App extends Component {
         );
     };
 
+            
     render() {
+     
         return (
+            <> 
             <div style={style} ref={ref => (this.mount = ref)} />
+            <div className="ToolTipPos">
+            <TriggersTooltips></TriggersTooltips>
+            </div>
+            </>
         );
+        
     }
 }
 
+
 class Container extends React.Component {
     state = {isMounted: true};
+    
+
 
     render() {
         const {isMounted = true, loadingPercentage = 0} = this.state;
         return (
+            <>
             <div className="LoadingAnimation">
                 {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div>Loading Coronavirus: {loadingPercentage}%</div>}
-            </div>
+                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar">Loading Coronavirus: {loadingPercentage}%</div>}
+            </div>   
+            
+        
+          </>
         )
     }
 }
 
+
+
+
 export default Container;
+
+
+
+
+
+
 

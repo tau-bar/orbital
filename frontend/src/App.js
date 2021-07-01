@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import SignUpPage from './pages/login-page/signuppage.component';
 import NewVirusPage from './pages/new-virus-page/new-virus.component';
 import VirusPage from './pages/virus-page/virus-page.component';
+import BodyPage from './pages/body-page/body-page.component';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path = "/login" component = {LoginPage}/>
         <Route exact path = "/sign-up" component = {SignUpPage}/>
         <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
+        <Route exact path = "/body" component = {BodyPage}></Route>
         <Route path = "/virus" component = {VirusPage} ></Route>
         
       </Switch>

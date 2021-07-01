@@ -76,6 +76,7 @@ const Timeline = () => {
         const { name, type, imgSrc, direction, origin, year, deaths, content, year2 } = timelinedata[key];
         return(
         <ParallaxComponent 
+            
             type = {type}
             imgSrc = {imgSrc}
             direction = {direction}

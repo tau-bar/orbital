@@ -88,29 +88,37 @@ function SignUpPage() {
 
 
     if (username.trim().length < 5) {
-      usernameErr.usernameShort = "Username is too short";
+      usernameErr.usernameShort = "Username must be longer than 5 characters";
       errorIdHelper = 'secondary';
       isValid = false;  
       valid = false;
     }
 
-    if (username.trim().length > 10) {
-      usernameErr.usernameLong = "Username is too long";
+    if (!username.includes("!") || !username.includes("@") || !username.includes("#") || !username.includes(",")) {
+      usernameErr.userName123 = "Username must have at least one punctuation";
       errorIdHelper = 'secondary';
       isValid = false;
       valid = false;
     }
 
-    if (!username.includes("123")) {
-      usernameErr.userName123 = "Username must have 123";
+    if (Password != C_Password) {
+      usernameErr.passwordNotSame = "Passwords do not match";
+      errorIdHelper = 'secondary';
+      isValid = false;
+      valid = false;
+    }
+
+    if (Password == username) {
+      usernameErr.passwordNotSame = "Password cannot be the same as your username";
       errorIdHelper = 'secondary';
       isValid = false;
       valid = false;
     }
 
     setUsernameErr(usernameErr);
-    setPasswordErr(usernameErr);
+    setPasswordErr(passwordErr);
     setErrorId(errorIdHelper);
+    setResult(true);
     return isValid;
 
 
@@ -146,10 +154,10 @@ function SignUpPage() {
   const Theme = {
     palette: {
       primary: {
-        main: "#FFFF00"
+        main: "#0000FF"
       },
       secondary: {
-        main: "#000000"
+        main: "#FFFF00"
       }
     }
   };
@@ -178,15 +186,13 @@ function SignUpPage() {
               <CustomTextField
                 label = "Username"
                 type = "username"
-                color = {result ? "secondary" : "primary"}
+                color = {result ? "primary" : "secondary"}
                 onChange={(e)=> {
                   setUsername(e.target.value)
                 }}            
               />
               </ThemeProvider>
-              {Object.keys(usernameErr).map((key)=>{
-                  return <div style={{color: "red"}}>{usernameErr[key]}</div>
-                })}
+              
               <CustomTextField
                 label = "Password"
                 type = "password"
@@ -201,6 +207,9 @@ function SignUpPage() {
                   setCPassword(e.target.value)
                 }}              
               />
+              {Object.keys(usernameErr).map((key)=>{
+                  return <div style={{color: "red"}}>{usernameErr[key]}</div>
+                })}
               <Button onClick = {submitReview} variant="contained" color="primary" type = "submit">
                 Sign Up 
               </Button>
