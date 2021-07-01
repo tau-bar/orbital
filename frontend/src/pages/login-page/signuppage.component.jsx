@@ -124,6 +124,7 @@ export default withRouter(SignUpPage);
 //       valid = false;
 //     }
 
+
 //     if (!username.includes("123")) {
 //       usernameErr.userName123 = "Username must have 123";
 //       errorIdHelper = 'secondary';
@@ -135,8 +136,6 @@ export default withRouter(SignUpPage);
 //     setPasswordErr(usernameErr);
 //     setErrorId(errorIdHelper);
 //     return isValid;
-
-
 
 //   }
 
@@ -163,6 +162,7 @@ export default withRouter(SignUpPage);
 //         alert("successful insert");
 //         }
         
+
 //     });
 //   };
 
@@ -186,9 +186,6 @@ export default withRouter(SignUpPage);
 //     let appo = formValidation();
 //     setResult(appo);
 //   };
-  
-
-
   
 //   return (
 //     <div className = 'login-signup-page'>
@@ -231,6 +228,7 @@ export default withRouter(SignUpPage);
 //             <p>Already have an account? <Link to = "login">Log in.</Link></p>
 //         </Container>
 //     </div>);
+
 
     
 // }
