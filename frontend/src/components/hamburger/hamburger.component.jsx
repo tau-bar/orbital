@@ -22,7 +22,7 @@ const Hamburger = (props) => {
         <div className = 'hamburger-component'>
         <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
         <div className = 'login-button'>
-          <CustomButton onClick = {linkOnClick} >Log in/Sign up</CustomButton>
+          <CustomButton onClick = {linkOnClick('/sign-up')} >Log in/Sign up</CustomButton>
         </div>
         <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
