@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 import { withRouter } from 'react-router-dom';
-
+import {UserContext} from '../../context/UserContext'
 
 
 function LoginPage({ history }) {
+      const [user, setUser] = useContext(UserContext);
+
       const [values, setValues] = React.useState({
         username: '',
         password: '',
@@ -28,6 +30,7 @@ function LoginPage({ history }) {
             username: "",
             password: "",
           });
+          setUser(username);
           history.push('');
         } catch (error) {
           alert(error);

@@ -8,10 +8,13 @@ import SignUpPage from './pages/login-page/signuppage.component';
 import NewVirusPage from './pages/new-virus-page/new-virus.component';
 import VirusPage from './pages/virus-page/virus-page.component';
 import MapPage from './pages/map-page/map-page.component';
+import {UserProvider} from './context/UserContext';
 
 function App() {
   return (
+    <UserProvider>
     <div className="App">
+    
     <Hamburger/>
       <Switch>
         <Route exact path = "/" component = {HomePage}/>
@@ -22,6 +25,7 @@ function App() {
         <Route path = "/map" component = {MapPage} ></Route>
       </Switch>
     </div>
+    </UserProvider>
   );
 }
 
