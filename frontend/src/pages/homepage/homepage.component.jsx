@@ -13,7 +13,6 @@ function Home() {
     <HeroSection2 />
     <HeroSection />
     <Cards /> 
-
     <Timeline/>
 
      </div>
