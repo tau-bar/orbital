@@ -5,12 +5,12 @@ import Cards from '../../components/Cards';
 import Timeline from '../../components/homepage-timeline/homepage-timeline.component.jsx';
 
 function Home() {
-
   return (
     <div> 
     
     <HeroSection />
     <Cards /> 
+
     <Timeline/>
 
      </div>
