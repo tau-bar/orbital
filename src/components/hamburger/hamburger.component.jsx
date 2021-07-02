@@ -4,13 +4,16 @@ import './hamburger-menu.styles.scss';
 import { Link } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
 import { withRouter } from 'react-router-dom';
-import {UserContext} from '../../context/UserContext';
+import { UserContext } from '../../context/UserProvider';
+import { auth } from '../../firebase/firebase.utils';
 
 
 const Hamburger = (props) => {
-    const [isActive, setIsActive] = useState(false);
-    const [user, setUser] = useContext(UserContext);
     
+    /* Authentication */
+    const user = useContext(UserContext);
+    
+    const [isActive, setIsActive] = useState(false);
 
     const hamburgerOnClick = (event) => {
         event.preventDefault();
@@ -21,13 +24,14 @@ const Hamburger = (props) => {
       setIsActive(false);
       props.history.push(url)
     }
+
     return (
         <div className = 'hamburger-component'>
-        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
+        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>VIRUSIM</h1></Link>
         <div className = 'login-button'>
-          {user === '' ? 
+          {user === undefined ? 
           <CustomButton onClick = {linkOnClick('/sign-up')}>Log In</CustomButton> :
-          <CustomButton onClick = {() => setUser('')}>Log Out</CustomButton>
+          <CustomButton onClick = {() => {auth.signOut()}}>{`Logged in. Sign Out?`}</CustomButton>
           }  
         
         </div>
