@@ -1,0 +1,47 @@
+@import '../../breakpoints.settings.scss';
+
+.hamburger-component {
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  background-color: black;
+  z-index: 1000;
+  color: white;
+}
+
+.title-logo {
+  padding-left: 50px;
+  text-decoration: none;
+
+  .logo-text {
+    font-weight: 300;
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.hm-link {
+  font-size: 32px;
+  text-transform: uppercase;
+  margin: 30px;
+  font-weight: bold;
+  text-decoration: none;
+} 
+
+.login-button {
+  position: absolute;
+  right: 100px;
+  top: 15px;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .title-logo {
+    padding-left: 20px;
+  }
+
+  .login-button {
+    position: absolute;
+    right: 75px;
+    top: 25px;
+  }
+}
