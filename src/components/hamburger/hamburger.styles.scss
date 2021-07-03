@@ -21,11 +21,17 @@
 }
 
 .hm-link {
-  font-size: 32px;
-  text-transform: uppercase;
-  margin: 30px;
-  font-weight: bold;
-  text-decoration: none;
+  font-size: 20px;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  transition: 0.1s linear;
+  user-select: none;
+
+  &:hover {
+    font-weight: bold;
+    transition: 0.1s linear;
+  }
 } 
 
 .login-button {
@@ -45,3 +51,106 @@
     top: 25px;
   }
 }
+
+.menu {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    height: 46px;
+    width: 46px;
+  }
+  
+  .menu-circle {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 1000;
+  }
+  
+  .menu-link {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1002;
+      cursor: pointer;
+  }
+  
+  .menu-icon {
+      position: absolute;
+    width: 20px;
+    height: 14px;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 1px;
+  }
+  
+  .menu-line {
+    background-color: yellow;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .menu-line-1 { top: 0; }
+  
+  .menu-line-2 {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .menu-line-3 { bottom: 0; }
+  
+  .menu.open .menu-line-1 {
+    transform: translateY(7px) translateY(-50%) rotate(-135deg);
+    background-color: yellow;
+  }
+  
+  .menu.open .menu-line-2 {
+    opacity: 0;
+  }
+  
+  .menu.open .menu-line-3 {
+    transform: translateY(-7px) translateY(50%) rotate(135deg);
+    background-color: yellow;
+  }
+  
+  .menu-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    color: black;
+    background-color: black;
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1001;
+    border-radius: 10px;
+  }
+  
+  .menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+
+    .links-container {
+      background-color: white;
+      width: 30%;
+      padding: 30px;
+      border-radius: 20px;
+    }
+  }
+
+  
