@@ -9,6 +9,7 @@ import VirusPage from './pages/virus-page/virus-page.component';
 import BodyPage from './pages/body-page/body-page.component';
 import MapPage from './pages/map-page/map-page.component';
 import UserProvider from './context/UserProvider';
+import VirusModelPage from './pages/virus-model-page/virus-model';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path = "/login" component = {LoginPage}/>
         <Route exact path = "/sign-up" component = {SignUpPage}/>
         <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
+        <Route path = "/virus/model" component = {VirusModelPage} ></Route>
         <Route exact path = "/body" component = {BodyPage}></Route>
         <Route path = "/virus" component = {VirusPage} ></Route>
         <Route path = "/map" component = {MapPage} ></Route>
