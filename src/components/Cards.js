@@ -6,26 +6,24 @@ import { withRouter } from 'react-router-dom';
 const Cards = (props) => {
   const virusData = {
     coronavirus: {
-      src:'/images/corona.jpeg'
+      src:'/images/coronavirus.png'
     },
     flavivirus: {
-      src:'/images/fla.jpeg'
+      src:'/images/flavivirus.png'
     },
     mobillivirus: {
-      src:'/images/morbi.jpeg'
+      src:'/images/morbillivirus.png'
     },
     yersenia: {
-      src:'/images/yersenia.jpeg'
+      src:'/images/yersinia.png'
     },
     ebolavirus: {
       src:'/images/ebola.jpeg'
     },
     orthopoxvirus : {
-      src:'/images/ortho.jpeg'
+      src:'/images/orthopox.png'
     },
-    betacoronavirus: {
-      src:'/images/beta.jpeg'
-    }
+   
   }
 
   return (

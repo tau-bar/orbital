@@ -14,6 +14,9 @@ import { Card,
 import { red, green } from '@material-ui/core/colors';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+import Container from '../../ThreeSceneCopy';
+
+
 const NewVirusPage = () => {
     const [values, setValues] = useState(
         {
@@ -66,7 +69,7 @@ const NewVirusPage = () => {
         </Typography>)
       }
 
-      const virusTypes = ["coronavirus", "flaviviridae", "morbillivirus", "yersinia", "ebolavirus", "orthopoxvirus", "betacoronavirus"];
+      const virusTypes = ["coronavirus", "flavivirus", "mobillivirus", "yersinia", "ebola", "orthopox", "betacoronavirus"];
 
       // const PrettoSlider = withStyles({
       //   root: {
@@ -172,18 +175,33 @@ const NewVirusPage = () => {
                           </RadioGroup>
                         </FormControl> 
                     </Card>
+                    
+                    
             </div>
             <div className = "virus-model-container">
                 Insert the interactive model of the virus here.
+                
+                
+                
+                
+               
+                <Container virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
                 {values.primary}
                 {values.secondary}
                 {values.virusType}
                 {values.size}
-                "space"
+                "spac"
                 {values.availableVaccine}
+                
             </div>
         </div>
     )
 }
 
 export default NewVirusPage;
+
+/*
+ <Container colorCode={values.primary}></Container>
+*/
+
+

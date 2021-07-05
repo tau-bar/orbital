@@ -101,7 +101,10 @@ class App extends Component {
         
 
         loader.load(
-            '/assets/eleph.obj',
+            /*
+            '/assets/eleph.obj'
+            */
+           this.props.modelPath,
             ( object ) => {
                 var cent = new THREE.Vector3();
                 var size = new THREE.Vector3();
@@ -158,7 +161,6 @@ class App extends Component {
     }
 }
 
-
 class Container extends React.Component {
     state = {isMounted: true};
     
@@ -169,8 +171,8 @@ class Container extends React.Component {
         return (
             <>
             <div className="LoadingAnimation">
-                {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar">Loading Coronavirus: {loadingPercentage}%</div>}
+                {isMounted && <App modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
+                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar"> Loading Virus Model: {loadingPercentage}%</div>}
             </div>   
             
         
@@ -179,12 +181,7 @@ class Container extends React.Component {
     }
 }
 
-
-
-
 export default Container;
-
-
 
 
 
