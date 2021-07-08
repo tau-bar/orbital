@@ -43,7 +43,7 @@ class App extends Component {
     }
 
     sceneSetup = () => {
-        const width = this.mount.clientWidth / 2;
+        const width = this.mount.clientWidth / 4;
         const height = this.mount.clientHeight;
 
         this.scene = new THREE.Scene();

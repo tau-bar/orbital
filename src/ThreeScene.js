@@ -3,6 +3,7 @@ import { useState } from "react";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
+import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.css';
 import './LoadingBar.css';
 import TriggersTooltips from './ToolTip';
@@ -96,15 +97,23 @@ class App extends Component {
 
     //Load obj and mtl file here
 
+
     loadTheModel = () => {
         const loader = new OBJLoader();
+        /*
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load("/assets/ebola.mtl",null,(materials)=>{
+            loader.setMaterials(materials);
+            */
         
 
+        
+        
         loader.load(
             /*
             '/assets/eleph.obj'
             */
-           this.props.modelPath,
+           this.props.modelPath, 
             ( object ) => {
                 var cent = new THREE.Vector3();
                 var size = new THREE.Vector3();
@@ -143,8 +152,15 @@ class App extends Component {
                 console.log( 'An error happened:' + error );
 
             }
+        
         );
+        /*
+    })
+    */
+        
     };
+    
+    
 
             
     render() {
