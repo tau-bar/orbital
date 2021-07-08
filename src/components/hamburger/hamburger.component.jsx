@@ -1,18 +1,16 @@
 import React, { useState, useContext } from 'react';
 import './hamburger.styles.scss';
+import './hamburger-menu.styles.scss';
 import { Link } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
 import { withRouter } from 'react-router-dom';
-import { UserContext } from '../../context/UserProvider';
-import { auth } from '../../firebase/firebase.utils';
+import {UserContext} from '../../context/UserContext';
 
 
 const Hamburger = (props) => {
-    
-    /* Authentication */
-    const user = useContext(UserContext);
-    
     const [isActive, setIsActive] = useState(false);
+    const [user, setUser] = useContext(UserContext);
+    
 
     const hamburgerOnClick = (event) => {
         event.preventDefault();
@@ -23,35 +21,31 @@ const Hamburger = (props) => {
       setIsActive(false);
       props.history.push(url)
     }
-
     return (
         <div className = 'hamburger-component'>
-        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>VIRUSIM</h1></Link>
+        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
         <div className = 'login-button'>
-          {user === undefined ? 
+          {user === '' ? 
           <CustomButton onClick = {linkOnClick('/sign-up')}>Log In</CustomButton> :
-          <CustomButton onClick = {() => {auth.signOut()}}>{`Logged in. Sign Out?`}</CustomButton>
+          <CustomButton onClick = {() => setUser('')}>Log Out</CustomButton>
           }  
         
         </div>
         <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
-        <div class="menu-link">
+        <a href="#" class="menu-link">
           <span class="menu-icon">
             <span class="menu-line menu-line-1"></span>
             <span class="menu-line menu-line-2"></span>
             <span class="menu-line menu-line-3"></span>
           </span>
-        </div>
+        </a>
       </div>
     
         <div class={`menu-overlay ${isActive ? "open" : ""}`}>
-          <div className = 'links-container'>
-            <p onClick = {(linkOnClick('/virus'))} className = 'hm-link'>Viruses</p>
-            <p onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus Reproduction</p>
-            <p onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map</p>
-            <p onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create New Virus</p>
-          </div>
+        <Link onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus On Body</Link>
+        <Link onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create new virus</Link>
+        <Link onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map</Link>
         </div>
         </div>
     )

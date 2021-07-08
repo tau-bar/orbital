@@ -1,0 +1,90 @@
+.cards {
+  width:100%;
+  background-color: black;
+}
+
+.cards-title {
+  margin-top:0px;
+  text-align: center;
+  color:lavender;
+}
+
+.cards__items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cards__item {
+  display: flex;
+  flex: 3;
+  margin: 0 3rem;
+}
+
+
+.cards__item__pic-wrap {
+  position: relative;
+  overflow: hidden;
+  background: black;
+  border-radius: 100%;
+
+  .cards__item__img {
+  height: 30vh;
+  width: 30vh;
+  display: inline-block;
+  transition: all 0.2s linear;
+}
+}
+
+.fade-img {
+  animation-name: fade-img;
+  animation-duration: 2s;
+}
+
+.cards__item__pic-wrap:after {
+  content: attr(data-category);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  transition: 0.2s linear;
+  opacity:0;
+}
+
+.cards__item__pic-wrap:hover:after {
+  font-size: 20px;
+  font-weight: 700;
+  opacity:1;
+}
+
+
+
+.cards__item__img:hover {
+  transform: scale(1.1);
+}
+
+.cards__item__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .content__blog__container {
+    width: 84%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .cards__items {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .cards__item {
+    margin-bottom: 2rem;
+  }
+}

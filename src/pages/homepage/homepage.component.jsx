@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 /* Routing */
 import { withRouter } from 'react-router';
 
@@ -40,6 +41,7 @@ const Home = ({ history }) => {
         <h1 style = {{fontSize: '4rem', fontWeight:'bold'}}>Get vaccinated.</h1>
       </InfoSection>
     </div>
+
     
   );
 }
