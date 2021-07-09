@@ -129,11 +129,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    height: 30vh;
+    width: 25vw;
     color: black;
-    background-color: black;
-    position: fixed;
+    background-color: white;
+    position: absolute;
+    top: 10vh;
+    right: 3vw;
     opacity: 0;
     visibility: hidden;
     text-align: center;
@@ -145,13 +147,6 @@
   .menu-overlay.open {
     opacity: 1;
     visibility: visible;
-
-    .links-container {
-      background-color: white;
-      width: 30%;
-      padding: 30px;
-      border-radius: 20px;
-    }
   }
 
   

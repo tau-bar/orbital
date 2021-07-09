@@ -1,12 +1,14 @@
 import React from 'react';
-
-
+import InfoSection from '../../components/info-section/info-section.component';
+import ReactPlayer from 'react-player/lazy'
 
 function BodyAnimation() {
     return (
         <div className='hero-container'>
-            <video src="/videos/body.mp4" autoPlay loop muted />
-            <h1 style={{ color: 'white' }}>Virus Attacking Body Animation</h1>
+            <InfoSection title = "Virus Reproduction">
+                <p>The video demonstrates how a virus reproduces once it enters the human body.</p>
+                <ReactPlayer volume controls url = "/videos/body.mp4"></ReactPlayer>
+            </InfoSection>
         </div>
     )
 

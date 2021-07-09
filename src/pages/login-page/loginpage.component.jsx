@@ -44,8 +44,18 @@ function LoginPage({ history }) {
         .finally(() => {
           history.push('');
         })
-        
-        
+      }
+
+      // Not satisfied with this, fix next time.
+      const handleGoogleSignIn = (event) => {
+        event.preventDefault();
+        try {
+          signInWithGoogle();
+        } catch (error) {
+          alert(error);
+        } finally {
+          history.push('');
+        }
       }
       
       return (
@@ -69,6 +79,7 @@ function LoginPage({ history }) {
                         Login 
                       </Button>
                     </form>
+                    <Button variant="contained" color="primary" onClick = {handleGoogleSignIn}>Or Sign in with Google</Button>
                     <p>Don't have an account? <Link to = "/sign-up">Sign up.</Link></p>
                 </Container>
             </div>

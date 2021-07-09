@@ -46,7 +46,7 @@ const Home = ({ history }) => {
   );
 }
 
-export default Home;
+export default withRouter(Home);
 
 
 

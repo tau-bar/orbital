@@ -1,13 +1,15 @@
 import React from 'react';
 import './HeroSection.css';
-
+import ReactPlayer from 'react-player/lazy'
+import InfoSection from './info-section/info-section.component';
 
 function HeroSection() {
     return (
         <div className='hero-container'>
-            <h1 style={{ color: 'white' }}>Virus Assembly</h1>
-            <video className = 'home-img' src="/videos/finalAssembly.mp4" autoPlay loop muted />
-            
+            <InfoSection title = "Virus Assembly">
+                <p>The video shows the parts of a virus.</p>
+                <ReactPlayer volume controls url = "/videos/finalAssembly.mp4"></ReactPlayer>
+            </InfoSection>
         </div>
     )
 
