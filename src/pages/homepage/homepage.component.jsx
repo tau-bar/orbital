@@ -41,6 +41,7 @@ const Home = ({ history }) => {
         <h1 style = {{fontSize: '4rem', fontWeight:'bold'}}>Get vaccinated.</h1>
       </InfoSection>
     </div>
+
     
   );
 }

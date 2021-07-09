@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import Cards from '../../components/cards/Cards';
 import './virus-page.styles.scss';
@@ -15,6 +16,7 @@ const VirusPage = ({ history }) => {
             </div>
         )
     }
+
 
     return(
         <div>

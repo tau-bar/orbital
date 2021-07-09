@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/pages/login-page/loginpage.component.jsx
 import React, { useContext, useState } from 'react';
+=======
+import React, {useContext} from 'react';
+>>>>>>> reyaaz:frontend/src/pages/login-page/loginpage.component.jsx
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
@@ -15,6 +19,7 @@ function LoginPage({ history }) {
 
       const [values, setValues] = useState({
         email: '',
+
         password: '',
       });
 
