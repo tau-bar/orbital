@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 /* Routing */
 import { withRouter } from 'react-router';
 
@@ -44,7 +45,7 @@ const Home = ({ history }) => {
   );
 }
 
-export default Home;
+export default withRouter(Home);
 
 
 
