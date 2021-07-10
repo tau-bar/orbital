@@ -1,16 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './hamburger.styles.scss';
-import './hamburger-menu.styles.scss';
 import { Link } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
 import { withRouter } from 'react-router-dom';
-import {UserContext} from '../../context/UserContext';
-
+import { UserContext } from '../../context/UserProvider';
+import { HamburgerContext } from '../../context/HamburgerProvider';
+import { logOut } from '../../firebase/firebase.utils';
 
 const Hamburger = (props) => {
-    const [isActive, setIsActive] = useState(false);
-    const [user, setUser] = useContext(UserContext);
-    
+    const [isActive, setIsActive] = useContext(HamburgerContext);
+    const user = useContext(UserContext);
 
     const hamburgerOnClick = (event) => {
         event.preventDefault();
@@ -21,13 +20,14 @@ const Hamburger = (props) => {
       setIsActive(false);
       props.history.push(url)
     }
+
     return (
         <div className = 'hamburger-component'>
         <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
         <div className = 'login-button'>
-          {user === '' ? 
+          {user === undefined ? 
           <CustomButton onClick = {linkOnClick('/sign-up')}>Log In</CustomButton> :
-          <CustomButton onClick = {() => setUser('')}>Log Out</CustomButton>
+          <CustomButton onClick = {logOut}>Log Out</CustomButton>
           }  
         
         </div>

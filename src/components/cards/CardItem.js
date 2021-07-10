@@ -1,20 +1,22 @@
 import React from 'react';
 
-const CardItem = ({ onClick, label, src, text }) => {
+const CardItem = ({ onClick, label, src }) => {
   return (
-  
-      <div className='cards__item'>
-          <figure onClick = {onClick} className='cards__item__pic-wrap' data-category={label}>
-            <img
-              className='cards__item__img'
-              alt={label}
-              src={src}
-            />
-          </figure>
-          <div className='cards__item__info'>
-            <h5 className='cards__item__text'>{text}</h5>
-          </div>
+    <div  
+    className = 'card-item'
+    onClick = {onClick}>
+      <div 
+      className = 'background-image'
+      style = {{
+        backgroundImage: `url(${src})`
+      }}
+      />
+      <div className = "content">
+        <span className = "subtitle">
+          { label }
+        </span>
       </div>
+    </div>
   );
 }
 

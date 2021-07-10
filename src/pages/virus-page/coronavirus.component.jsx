@@ -1,10 +1,10 @@
 import React from 'react';
 import Container from '../../ThreeScene';
 
-const VirusModelPage = () => {
+const CoronaPage = () => {
     return(
         <Container modelPath ='/assets/eleph.obj'></Container>
     )
 }
 
-export default VirusModelPage;
+export default CoronaPage;

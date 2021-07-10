@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/pages/login-page/loginpage.component.jsx
-import React, { useContext, useState } from 'react';
-=======
-import React, {useContext} from 'react';
->>>>>>> reyaaz:frontend/src/pages/login-page/loginpage.component.jsx
+import React, { useContext, useState, useEffect } from 'react';
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
@@ -15,11 +11,14 @@ import { UserContext } from '../../context/UserProvider'
 function LoginPage({ history }) {
       const user = useContext(UserContext);
 
-      /* Add code here, if already have user, redirect to home page. */
+      useEffect(() => {
+        if (user !== undefined) {
+          history.push('/');
+        }
+      })
 
       const [values, setValues] = useState({
         email: '',
-
         password: '',
       });
 

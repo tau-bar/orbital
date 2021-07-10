@@ -19,7 +19,7 @@ const userRef = firestore.doc(`users/${user.uid}`);
 const snapShot = await userRef.get()
 if (!snapShot.exists){
     const { email } = user;
-    const createdAt=new Date()
+    const createdAt = new Date()
     try {
         await userRef.set({
             email,
@@ -57,5 +57,15 @@ provider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
+export const logOut = () => {
+  auth.signOut()
+  .then(() => {
+    console.log('signed out')
+  })
+  .catch(error => {
+    console.log(error.message)
+  })
+
+}
 
 export default firebase;

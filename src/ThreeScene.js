@@ -166,12 +166,12 @@ class App extends Component {
     render() {
      
         return (
-            <> 
-            <div style={style} ref={ref => (this.mount = ref)} />
-            <div className="ToolTipPos">
-            <TriggersTooltips></TriggersTooltips>
+            <div> 
+                <div style={style} ref={ref => (this.mount = ref)} />
+                    <div className="ToolTipPos">
+                    <TriggersTooltips></TriggersTooltips>
+                </div>
             </div>
-            </>
         );
         
     }
@@ -188,13 +188,8 @@ class Container extends React.Component {
         return (
             <>
             <div className="LoadingAnimation">
-<<<<<<< HEAD:src/ThreeScene.js
-                {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar">Loading Coronavirus: {loadingPercentage}%</div>}
-=======
                 {isMounted && <App modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
                 {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar"> Loading Virus Model: {loadingPercentage}%</div>}
->>>>>>> reyaaz:frontend/src/ThreeScene.js
             </div>   
             
         
