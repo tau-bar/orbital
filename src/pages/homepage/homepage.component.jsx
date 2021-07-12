@@ -5,8 +5,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 /* Components */
-import HeroSection from '../../components/HeroSection';
-import HeroSection2 from '../../components/HeroSection2';
 import Timeline from '../../components/homepage-timeline/homepage-timeline.component.jsx';
 import Button from '@material-ui/core/Button';
 import InfoSection from '../../components/info-section/info-section.component';
@@ -16,12 +14,14 @@ import './homepage.styles.scss';
 import infoimg1 from '../../assets/images/homepage-info-bg.jpg';
 import pandemic from '../../assets/images/pandemic.png';
 import vaccine from '../../assets/images/vaccine.jpg';
-
+import ReactPlayer from 'react-player/lazy'
 
 const Home = ({ history }) => {
   return (
     <div> 
-      <HeroSection2 />
+        <div className='hero-container'>
+          <video className = 'home-img' src="/videos/Start.mp4" loop autoPlay muted/>
+        </div>
         <InfoSection img = {infoimg1} title = "What is a virus?">
           <p>Viruses are microscopic particles that somtimes cause diseaes. 🤒</p>
           <p>For example, COVID-19 spreads through droplets in the air. 🦠 </p>
@@ -31,7 +31,11 @@ const Home = ({ history }) => {
           </Button>
           <p>Scroll down to see what makes up a virus!</p>
         </InfoSection>
-      <HeroSection />
+        <InfoSection title = "Virus Assembly">
+        <p>The video shows the different parts of a virus and the roles they play in infecting humans.</p>
+        <ReactPlayer height = '200px' width = '360px' volume controls url = "/videos/finalAssembly.mp4"></ReactPlayer>
+      </InfoSection>
+      
       <InfoSection img = {pandemic} title = "What is a pandemic?">
         <p>Description of pandemic.</p>
         <p>Scroll down to see the various pandemics over the course of history... ☣️</p>

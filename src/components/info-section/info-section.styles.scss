@@ -6,7 +6,7 @@
     height: 100vh;
     background-color: maroon;
     background-position: center;
-    background-size: cover;  
+    background-size: cover;
 }
 
 .info-title {
@@ -14,6 +14,9 @@
 }
 
 .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: rgba(0,0,0,0.8);
     color: white;
     padding: 70px;

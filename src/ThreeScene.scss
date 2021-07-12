@@ -1,13 +1,20 @@
+.virus-model-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .LoadingBar {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     top: 40vh;
     color: white;
     background-color:black;
 }
 
 .ToolTipPos {
-    position: relative;
-    top: 70vh;
     color: white;
     background-color: black;
 }
@@ -30,3 +37,18 @@
     font-size: 16px;
   }
 
+.percentage-bar {
+    background-color: white;
+    margin: 10px;
+    height: 20px;
+    width: 300px;
+    border-radius: 30px;
+    border: 2px solid maroon;
+}
+
+.red-bar {
+    background: red;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+}

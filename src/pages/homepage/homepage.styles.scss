@@ -1,0 +1,14 @@
+.home-img {
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.hero-container {
+    height: 100vh;
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+}
