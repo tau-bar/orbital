@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
@@ -17,13 +17,19 @@ const SignUpPage = ({ history }) => {
     /* Authentication */
     const user = useContext(UserContext);
 
+    useEffect(() => {
+      if (user !== undefined) {
+        history.push('/');
+      }
+    })
+
     /* Add code here, if already have user, redirect to home page. */
 
     const createUser = async (event) => {
         event.preventDefault()
         const { email, password, confirmPassword } = values;
       
-        if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) === false) {
+        if (/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) === false) {
           alert("Must be a valid email address.")
           return;
         }

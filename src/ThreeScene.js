@@ -1,24 +1,20 @@
 import React, { Component } from "react";
-import { useState } from "react";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
-import './ThreeScene.css';
-import './LoadingBar.css';
+import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
 
 
 const style = {
     height: "15vh",
-    width: "80vh"
+    width: "50vh"
 
 };
 
-class App extends Component {
-
+class VirusModel extends Component {
     //Boilerplate code starts here 
-
     componentDidMount() {
         this.sceneSetup();
         this.addLights();
@@ -133,18 +129,12 @@ class App extends Component {
                 object.position.y = -cent.y;
                 object.position.z = -cent.z;
 
-            
-
-               
-
-
                 this.scene.add( object );
                 const el = this.scene.getObjectByName("Elephant_4");             
                 this.model = el;
             },
              ( xhr ) => {
                 const loadingPercentage = Math.ceil(xhr.loaded / xhr.total * 100);
-                console.log( ( loadingPercentage ) + '% loaded' );
                 this.props.onProgress(loadingPercentage);
             },
              ( error ) => {
@@ -159,46 +149,44 @@ class App extends Component {
     */
         
     };
-    
-    
-
             
     render() {
-     
         return (
-            <> 
-            <div style={style} ref={ref => (this.mount = ref)} />
-            <div className="ToolTipPos">
-            <TriggersTooltips></TriggersTooltips>
+            <div> 
+                <div style={style} ref={ref => (this.mount = ref)} />
+                    <div className="ToolTipPos">
+                    <TriggersTooltips></TriggersTooltips>
+                </div>
             </div>
-            </>
         );
         
     }
 }
 
+const LoadingBar = ({ percentage }) => (
+    <div className = "LoadingBar">
+        <div className = 'percentage-bar'>
+            <div className = 'red-bar' style = {{width: `${percentage + 20}%`}}></div></div>
+        Loading virus model: {percentage}%
+    </div>
+)
 
-class Container extends React.Component {
-    state = {isMounted: true};
-    
-
-
-    render() {
-        const {isMounted = true, loadingPercentage = 0} = this.state;
-        return (
-            <>
-            <div className="LoadingAnimation">
-<<<<<<< HEAD:src/ThreeScene.js
-                {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar">Loading Coronavirus: {loadingPercentage}%</div>}
-=======
-                {isMounted && <App modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar"> Loading Virus Model: {loadingPercentage}%</div>}
->>>>>>> reyaaz:frontend/src/ThreeScene.js
-            </div>   
-            
+class Container extends Component {
+    constructor() {
+        super();
+        this.state = {
+            isMounted: true,
+            loadingPercentage: 0
+            };
         
-          </>
+    }
+    render() {
+        const { isMounted, loadingPercentage } = this.state;
+        return (
+            <div className="virus-model-box">
+                {isMounted && <VirusModel modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
+                {isMounted && loadingPercentage !== 100 && <LoadingBar percentage = { loadingPercentage } />}
+            </div>   
         )
     }
 }

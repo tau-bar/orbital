@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { useState } from "react";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
-import './ThreeScene.css';
-import './LoadingBar.css';
+import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
 import CustomButton from './components/custom-button/custom-button.component';
 
