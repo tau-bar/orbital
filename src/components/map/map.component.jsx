@@ -28,7 +28,7 @@ const MapComponent = () => {
     const [current, setCurrent] = useState(0);
     return (
         <div className = 'map-component'>
-            <div class="flourish-embed flourish-map" data-src={`visualisation/${links[current]}`}>
+            <div className ="flourish-embed flourish-map" data-src={`visualisation/${links[current]}`}>
             {useScript("https://public.flourish.studio/resources/embed.js")}
             </div>
             <div className = 'map-settings'>

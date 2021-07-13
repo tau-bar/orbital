@@ -52,6 +52,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
+
 /* Always triggers google popup for authentication. */
 provider.setCustomParameters({ prompt: "select_account" }); 
 
@@ -65,7 +66,27 @@ export const logOut = () => {
   .catch(error => {
     console.log(error.message)
   })
-
 }
+
+
+export const createNewVirus = async (user, data) =>  {
+  if (user === undefined) return;
+  try {
+    await firestore.collection('users').doc(user.uid).collection('userViruses').add(data); 
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export const getUserViruses = async uid => {
+  if (!uid) return null;
+  try {
+    const virusRef = firestore.doc(`users/${uid}`).collection('userViruses');
+    const snapshot = await virusRef.get();
+    return snapshot;
+  } catch (error) {
+    console.error("Error fetching viruses", error);
+  }
+};
 
 export default firebase;

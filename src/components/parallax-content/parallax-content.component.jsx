@@ -1,6 +1,5 @@
 import React from 'react';
 import './parallax-content.styles.scss';
-import Fade from 'react-reveal/Fade';
 
 const ParallaxContent = ({ year, origin, deaths, children, type }) => (
     <div className = {`parallax-content ${type}`}>

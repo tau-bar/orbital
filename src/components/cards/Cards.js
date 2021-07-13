@@ -4,32 +4,32 @@ import CardItem from './CardItem';
 import { withRouter } from 'react-router-dom';
 import vpbg from '../../assets/images/vpbg.jpg';
 
+export const virusData = {
+  coronavirus: {
+
+    src:'/images/coronavirus.png'
+
+  },
+  flavivirus: {
+    src:'/images/flavivirus.png'
+  },
+  mobillivirus: {
+    src:'/images/morbillivirus.png'
+  },
+  yersenia: {
+
+    src:'/images/yersinia.png'
+  },
+  ebolavirus: {
+    src:'/images/ebola.jpeg'
+  },
+  orthopoxvirus : {
+
+    src:'/images/orthopox.png'
+  },   
+}
+
 const Cards = (props) => {
-  const virusData = {
-    coronavirus: {
-
-      src:'/images/coronavirus.png'
-
-    },
-    flavivirus: {
-      src:'/images/flavivirus.png'
-    },
-    mobillivirus: {
-      src:'/images/morbillivirus.png'
-    },
-    yersenia: {
-
-      src:'/images/yersinia.png'
-    },
-    ebolavirus: {
-      src:'/images/ebola.jpeg'
-    },
-    orthopoxvirus : {
-
-      src:'/images/orthopox.png'
-    },   
-  }
-
   return (
     <div 
     className='cards'

@@ -69,7 +69,7 @@ class App extends Component {
     addLights = () => {
         const lights = [];
         //color code here
-        const helper = this.props.colorCode
+        // const helper = this.props.colorCode
         console.log(this.props.colorCode)
 
         

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
-import {MTLLoader} from "three-obj-mtl-loader";
+// import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
 
