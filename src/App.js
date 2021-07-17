@@ -14,6 +14,7 @@ import OrthopoxPage from './pages/virus-page/orthopoxvirus.component';
 import YerseniaPage from './pages/virus-page/yersenia.component';
 import MobilliPage from './pages/virus-page/mobillivirus.component';
 import FlavPage from './pages/virus-page/flavivirus.component';
+// import VirusModelPage from './pages/virus-page/virus-model-page';
 
 
 import BodyPage from './pages/body-page/body-page.component';
@@ -41,7 +42,6 @@ function App() {
         <Route exact path = "/virus/ebolavirus" component = {EbolaPage} ></Route>
         <Route exact path = "/virus/orthopoxvirus" component = {OrthopoxPage} ></Route>
         <Route path = "/virus" component = {VirusPage} ></Route>
- 
         <Route path = "/map" component = {MapPage} ></Route>
       </Switch>
     </div>

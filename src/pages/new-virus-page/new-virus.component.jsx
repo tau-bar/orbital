@@ -32,11 +32,12 @@ const NewVirusPage = ({ history }) => {
 
     useEffect(() => {
       const getVirusData = async () => {
-          if (user !== null && history.location.state !== undefined && values.id === "") {
-              const virus = await getVirus(user, "U4Gd4nv269cSH5i2DTjQ");
+        const { id } = history.location.state
+          if (user !== null && id !== undefined && values.id === "") {
+              const virus = await getVirus(user, id);
 
               setValues({
-                id: "U4Gd4nv269cSH5i2DTjQ",
+                id: id,
                 ...virus
               })
           }
@@ -63,7 +64,7 @@ const NewVirusPage = ({ history }) => {
     } else {
         updateVirus(user, values)
         .then(alert("Virus Updated!"))
-        // .finally(history.push('/virus'));
+        .finally(history.push('/virus'));
     }
     }
 

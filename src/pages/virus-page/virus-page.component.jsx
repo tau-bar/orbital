@@ -59,7 +59,10 @@ const VirusPage = ({ history }) => {
                         
                                     <CardItem key = {id} label = {virusName} src = {virusData[virusNames[virusType - 1]].src} onClick = {() => history.push({
                                         pathname: '/virus/create',
-                                        state: id
+                                        state: {
+                                            id,
+                                            virusType,
+                                        }
                                     })}/>)
                                     
                             })
