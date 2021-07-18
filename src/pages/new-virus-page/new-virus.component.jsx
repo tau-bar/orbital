@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../../context/UserProvider';
 import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
 import CustomTextField from '../../components/text-field/text-field.component';
-import Container from '../../ThreeSceneCopy';
+import Container from '../../ThreeScene';
 import CreateCard from './create-card.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { withRouter } from 'react-router';
