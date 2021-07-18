@@ -51,7 +51,6 @@ const VirusPage = ({ history }) => {
       
       if (viruses.length !== 0) {
           return (
-              <div className='cards my-viruses'>
                   <div className='cards-container'>
                   {viruses.map(v => {
                               const { id, virusType, virusName } = v
@@ -68,7 +67,6 @@ const VirusPage = ({ history }) => {
                           })
                       }
                   </div>
-              </div>
           )
       }
       return (
@@ -81,7 +79,7 @@ const VirusPage = ({ history }) => {
 
   return(
       <div>
-          <div className = "my-viruses">
+          <div className = "cards my-viruses">
               <h1 className = 'my-viruses-title'>My Viruses</h1>
                   { user === undefined ?
                       noUserMyViruses():

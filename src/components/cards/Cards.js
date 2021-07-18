@@ -2,7 +2,7 @@ import React from 'react';
 import './Cards.scss';
 import CardItem from './CardItem';
 import { withRouter } from 'react-router-dom';
-import vpbg from '../../assets/images/vpbg.jpg';
+import viruses from '../../assets/images/viruses.jpg'
 
 export const virusData = {
   coronavirus: {
@@ -31,9 +31,9 @@ const Cards = (props) => {
   return (
     <div 
     className='cards'
-    style={{ backgroundImage: `url(${vpbg})` }}>
+    style={{ backgroundImage: `url(${viruses})` }}>
       <h1 className = 'cards-title'>Understanding Viruses</h1>
-      <p>Click on a card to view the interactive virus model!</p>
+      <p style = {{color: 'white'}}>Click on a card to view the interactive virus model!</p>
       <div className='cards-container'>
           {
             Object.keys(virusData).map((key, index) => {

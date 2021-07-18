@@ -6,9 +6,14 @@
 }
 
 .virus-modifiers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 30vw;
-    background-color: rgba($color: #000000, $alpha: 0.9);
+    background: url('../../assets/images/blackmarble.jpg');
+    background-size: cover;
     overflow-y:scroll;
+    padding-bottom: 40px;
 }
 
 .virus-model-container {
@@ -16,4 +21,15 @@
     height: 100vh;
     width: 80vw;
     background-color: black;
+}
+
+.create-card {
+    padding: 30px;
+    margin: 20px;
+    background: url('../../assets/images/marble.jpg');
+    background-size: cover;
+}
+
+.card-title {
+    width: 250px;
 }

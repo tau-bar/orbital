@@ -13,6 +13,7 @@ import { UserContext } from '../../context/UserProvider';
 import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
 import CustomTextField from '../../components/text-field/text-field.component';
 import Container from '../../ThreeSceneCopy';
+import CreateCard from './create-card.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { withRouter } from 'react-router';
 
@@ -25,8 +26,8 @@ const NewVirusPage = ({ history }) => {
             virusName: "",
             virusType: "",
             primary: "",
-            size : 20,
-            lethality: 20,
+            size : 50,
+            lethality: 50,
         }
     )
     const user = useContext(UserContext);
@@ -112,16 +113,21 @@ const NewVirusPage = ({ history }) => {
     return (
         <div className = 'new-virus-page'>
             <div className = 'virus-modifiers'>
-                    <Card className = {classes.modifiergroup}>
-                    <Title>Virus Name</Title>
+                    <CreateCard>
+                    <div className = "card-title">
+                      <h2>Virus Name</h2>
+                    </div>
+                      
                       <CustomTextField 
                       value = {values.virusName ? values.virusName : ""} 
                       onChange = {handleChange} 
                       name = "virusName" 
                       label = "Name your virus!" />
-                    </Card>
-                    <Card className = {classes.modifiergroup}>
-                    <Title>Type</Title>
+                    </CreateCard>
+                    <CreateCard>
+                    <div className = "card-title">
+                      <h2>Virus Type</h2>
+                    </div>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="virus-select-outlined-label">Choose virus</InputLabel>
                         <Select
@@ -139,26 +145,32 @@ const NewVirusPage = ({ history }) => {
                         })}
                         </Select>
                     </FormControl>
-                    </Card>
-                    <Card className = {classes.modifiergroup}>
-                        <Title>Colours</Title>
-                        <ColourPicker value = {values.primary} name = "primary" onChange = {handleChange} label = "Primary colour"/>
-                    </Card>
-                    <Card className = {classes.modifiergroup}>
-                        <Title>Size</Title>
+                    </CreateCard>
+                    <CreateCard>
+                    <div className = "card-title">
+                      <h2>Colour</h2>
+                    </div>
+                        <ColourPicker value = {values.primary} name = "primary" onChange = {handleChange}/>
+                    </CreateCard>
+                    <CreateCard>
+                    <div className = "card-title">
+                      <h2>Size</h2>
+                    </div>
                         <Slider 
                         value = {values.size}
                         onChange = {handleSliderChange("size")}
                         valueLabelDisplay="auto" aria-label="slider"/>
-                    </Card>
-                    <Card className = {classes.modifiergroup}>
-                        <Title>Lethality</Title>
+                    </CreateCard>
+                    <CreateCard>
+                    <div className = "card-title">
+                      <h2>Lethality</h2>
+                    </div>
                         <Slider 
                         value = {values.lethality}
                         onChange = {handleSliderChange("lethality")}
                         valueLabelDisplay="auto" aria-label="slider"/>
-                    </Card>
-                    <CustomButton onClick = {handleSaveVirus} className ='save-button'>Save!</CustomButton>
+                    </CreateCard>
+                    <CustomButton filled onClick = {handleSaveVirus} className ='save-button'>Save!</CustomButton>
             </div>
             <div className = "virus-model-container">
                 <Container virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>

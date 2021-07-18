@@ -1,8 +1,8 @@
 import React from 'react';
 import './custom-button.styles.scss';
 
-const CustomButton = ({ children, onClick }) => (
-    <div onClick = {onClick} className = 'custom-button'>
+const CustomButton = ({ children, onClick, filled }) => (
+    <div onClick = {onClick} className = {`custom-button ${filled ? 'filled' : ''}`}>
         {children}
     </div>
 )
