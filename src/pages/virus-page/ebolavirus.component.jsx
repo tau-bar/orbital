@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../../ThreeScene';
+import Container from '../../ThreeSceneAnother';
 
 const EbolaPage = () => {
     return(

@@ -41,7 +41,9 @@ const Cards = (props) => {
                 <CardItem
                 src= {virusData[key].src}
                 label={key.charAt(0).toUpperCase() + key.slice(1)}
-                onClick={() => props.history.push(`/virus/model/${key}`)}
+                onClick={() => props.history.push({
+                  pathname: `virus/model/${key}`,
+                  state: {key} })}
               />)
             }
               )

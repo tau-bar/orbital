@@ -34,6 +34,8 @@ const VirusPage = ({ history }) => {
             <Cards/>
         </div>
     )
+
+   
 }
 
 export default VirusPage;
