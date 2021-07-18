@@ -52,6 +52,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
+
 /* Always triggers google popup for authentication. */
 provider.setCustomParameters({ prompt: "select_account" }); 
 
@@ -65,7 +66,67 @@ export const logOut = () => {
   .catch(error => {
     console.log(error.message)
   })
+}
 
+
+export const createNewVirus = async (user, data) =>  {
+  if (user === undefined) return;
+  try {
+    await firestore.collection('users').doc(user.uid).collection('userViruses').add(data); 
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export const getUserViruses = async user => {
+  if (!user) return;
+  try {
+    const virusRef = firestore.doc(`users/${user.uid}`).collection('userViruses');
+    const snapshot = await virusRef.get();
+    const viruses = await snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return viruses;
+  } catch (error) {
+    console.error("Error fetching viruses", error);
+  }
+};
+
+export const getVirus = async (user, virusId) => {
+  if (!virusId || !user) return;
+  try {
+    const virusRef = firestore.doc(`users/${user.uid}`).collection('userViruses').doc(virusId);
+    return await virusRef
+    .get()
+    .then(doc => doc.data());
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export const updateVirus = async (user, values) => {
+  console.log(values.id)
+  if (!user || !values.id) return;
+  try {
+    const virusRef = await firestore.doc(`users/${user.uid}`).collection('userViruses').doc(values.id);
+    console.log(virusRef);
+    virusRef.set(values);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export const deleteVirus = async (user, virusId) => {
+  if (!virusId || !user) return;
+  try {
+    const virusRef = await firestore.doc(`users/${user.uid}`).collection('userViruses').doc(virusId);
+    virusRef
+    .delete()
+    .then(() => alert('Virus has been deleted.'))
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 export default firebase;

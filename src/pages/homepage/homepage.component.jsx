@@ -33,7 +33,7 @@ const Home = ({ history }) => {
         </InfoSection>
         <InfoSection title = "Virus Assembly">
         <p>The video shows the different parts of a virus and the roles they play in infecting humans.</p>
-        <ReactPlayer height = '200px' width = '360px' volume controls url = "/videos/finalAssembly.mp4"></ReactPlayer>
+        <ReactPlayer height = '200px' width = '360px' volume controls url = "https://youtu.be/pWAVqJb70m0"></ReactPlayer>
       </InfoSection>
       
       <InfoSection img = {pandemic} title = "What is a pandemic?">

@@ -1,0 +1,14 @@
+.full {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+}
+
+canvas {
+    background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
+    background-size: cover;
+  }
+

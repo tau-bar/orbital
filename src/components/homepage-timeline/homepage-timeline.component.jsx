@@ -34,7 +34,7 @@ const timelinedata = {
         year: "1918",
         year2: "1920",
         deaths: "50 million",
-        content: "The Spanish flu, also known as the 1918 influenza pandemic, was an unusually deadly influenza pandemic caused by the H1N1 influenza A virus. Lasting from February 1918 to April 1920, it infected 500 million people – about a third of the world's population at the time – in four successive waves."
+        content: "Spanish Flu is caused by a virus from the H1N1 family. It has a few nicknames, namely Kansas flu and the forgotten flu (because it happened in the same time as world war 1). Spanish flu ended in the mid 1919s. On March 11 1918, at Fort Riley, Albert Gitchell was the first person in the US to be infected with the Spanish flu. Since he was a cook, he came in close contact with many other soldiers there. It was agreed upon that Spanish flu started in China, Austria, or East Asia. Spanish flu name came about because during world war 1, Spain newspapers were not heavily censored and thus it seemed that the number of cases of the flu is drastically more in Spain than in other parts of the world. The total death toll was 27% of the world (50-100 million). From the US, 2 million people died. Among those 2 million that died, many of them were young adults who have strong immune systems. 17 million people died in India, 1.5 million people died in the Dutch East, 390,000 people died in Japan, 250 000 died in "
     },
     sars: {
         name: "SARS",

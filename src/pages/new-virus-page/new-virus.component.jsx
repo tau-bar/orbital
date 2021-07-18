@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ColourPicker from '../../components/colour-picker/colour-picker.component';
 import './new-virus.styles.scss';
 import { Card,
@@ -7,39 +7,77 @@ import { Card,
         InputLabel,
         MenuItem,
         Select,
-        Slider, 
-        Radio,
-        RadioGroup,
-        FormControlLabel} from '@material-ui/core';
-import { red, green } from '@material-ui/core/colors';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-
+        Slider} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { UserContext } from '../../context/UserProvider';
+import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
+import CustomTextField from '../../components/text-field/text-field.component';
 import Container from '../../ThreeSceneCopy';
+import CustomButton from '../../components/custom-button/custom-button.component';
+import { withRouter } from 'react-router';
 
 
-const NewVirusPage = () => {
+const NewVirusPage = ({ history }) => {
+  
     const [values, setValues] = useState(
         {
+            id: "",
+            virusName: "",
             virusType: "",
             primary: "",
-            secondary: "",
             size : 20,
             lethality: 20,
-            availableVaccine: "true",
         }
     )
+    const user = useContext(UserContext);
 
-    const handleUpdateVirus = () => {
-      console.log("Code to update the characteristics on the virus.")
-    }  
+    useEffect(() => {
+      const getVirusData = async () => {
+        const { state } = history.location
+          if (user !== null && state !== undefined && values.id === "") {
+              const virus = await getVirus(user, state.id);
+
+              setValues({
+                id: state.id,
+                ...virus
+              })
+          }
+      }
+      getVirusData();
+  }, [user])
+  console.log(values);
+
+
+    const handleSaveVirus = () => {
+      if (values.id === "") {
+        if (user === undefined) {
+          alert('You need to be signed in to create a virus!');
+          return;
+        }
+        const { virusName, virusType, primary } = values;
+        if (virusName === "" || virusType === "" || primary === "") {
+          alert("You need to enter values in the form!");
+          return;
+        }
+        createNewVirus(user, values)
+        .then(alert("Virus Created!"))
+        .finally(history.push('/virus'));
+        return;
+    } else {
+        updateVirus(user, values)
+        .then(alert("Virus Updated!"))
+        .finally(history.push('/virus'));
+    }
+    }
 
     const handleChange = (event) => {
+        console.log(event)
         const { name, value } = event.target;
         setValues({
             ...values,
             [name]: value,
             
-        })    
+        })  
     }
 
     const handleSliderChange = name => (event, value) => {
@@ -55,7 +93,7 @@ const NewVirusPage = () => {
             minWidth: 160,
           },
         modifiergroup: {
-            padding: '20px',
+            padding: '30px',
             margin: '20px',
             backgroundColor: '#ffffad',
         }
@@ -64,93 +102,47 @@ const NewVirusPage = () => {
       const classes = useStyles();
 
       const Title = ({ children }) => {
-        return (<Typography variant="h5" component="h2">
+        return (<Typography variant="h5" component="h2" style = {{paddingBottom: '30px'}}>
         {children}
         </Typography>)
       }
 
-      const virusTypes = ["coronavirus", "flavivirus", "mobillivirus", "yersinia", "ebola", "orthopox", "betacoronavirus"];
-
-      // const PrettoSlider = withStyles({
-      //   root: {
-      //     color: 'red',
-      //     marginTop: 40,
-      //   },
-      //   thumb: {
-      //     height: 24,
-      //     width: 24,
-      //     backgroundColor: '#fff',
-      //     border: '2px solid currentColor',
-      //     marginTop: -8,
-      //     marginLeft: -12,
-      //     '&:focus, &:hover, &$active': {
-      //       boxShadow: 'inherit',
-      //     },
-      //   },
-      //   active: {},
-      //   valueLabel: {
-      //     left: 'calc(-50% + 4px)',
-      //   },
-      //   track: {
-      //     height: 8,
-      //     borderRadius: 4,
-      //   },
-      //   rail: {
-      //     height: 8,
-      //     borderRadius: 4,
-      //   },
-      // })(Slider);
-
-
-    const GreenRadio = withStyles({
-      root: {
-        color: green[400],
-        '&$checked': {
-          color: green[600],
-        },
-      },
-      checked: {},
-    })((props) => <Radio color="default" {...props} />);
-
-    const RedRadio = withStyles({
-      root: {
-        color: red[400],
-        '&$checked': {
-          color: red[600],
-        },
-      },
-      checked: {},
-    })((props) => <Radio color="default" {...props} />);
-
+      const virusTypes = ["coronavirus", "flavivirus", "mobillivirus", "yersinia", "ebola", "orthopox"];
 
     return (
         <div className = 'new-virus-page'>
             <div className = 'virus-modifiers'>
                     <Card className = {classes.modifiergroup}>
+                    <Title>Virus Name</Title>
+                      <CustomTextField 
+                      value = {values.virusName ? values.virusName : ""} 
+                      onChange = {handleChange} 
+                      name = "virusName" 
+                      label = "Name your virus!" />
+                    </Card>
+                    <Card className = {classes.modifiergroup}>
                     <Title>Type</Title>
                     <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Choose virus</InputLabel>
+                        <InputLabel id="virus-select-outlined-label">Choose virus</InputLabel>
                         <Select
+                        defaultValue = {0}
                         name = "virusType"
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={values.virusType}
+                        labelId="virus-select-outlined-label"
+                        id="virus-select-outlined"
+                        value={values.virusType ? values.virusType : ""}
                         onChange={handleChange}
                         label="Choose virus"
                         >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        {virusTypes.map(virus => {
-                            return(<MenuItem value={virus}>{virus.charAt(0).toUpperCase()+ virus.slice(1)}</MenuItem>); 
+                        <MenuItem value="">None</MenuItem>
+                        {virusTypes.map((virus, i) => {
+                            return(<MenuItem key = {`CreateVirusType${i}`} value={i + 1}>{virus.charAt(0).toUpperCase()+ virus.slice(1)}</MenuItem>); 
                         })}
                         </Select>
                     </FormControl>
                     </Card>
                     <Card className = {classes.modifiergroup}>
                         <Title>Colours</Title>
-                        <ColourPicker name = "primary" onChange = {handleChange} label = "Primary colour"/>
-                        <ColourPicker name = "secondary" onChange = {handleChange} label = "Secondary colour"/>
+                        <ColourPicker value = {values.primary} name = "primary" onChange = {handleChange} label = "Primary colour"/>
                     </Card>
                     <Card className = {classes.modifiergroup}>
                         <Title>Size</Title>
@@ -166,42 +158,13 @@ const NewVirusPage = () => {
                         onChange = {handleSliderChange("lethality")}
                         valueLabelDisplay="auto" aria-label="slider"/>
                     </Card>
-                    <Card className = {classes.modifiergroup}>
-                        <Title>Available Vaccine</Title>
-                        <FormControl component="fieldset">
-                          <RadioGroup defaultValue="true" aria-label="vaccine" name="customized-radios">
-                            <FormControlLabel onChange = {handleChange} name = "availableVaccine" checked = {values.availableVaccine === "false"} value = "false" control={<RedRadio/>} label="No" />
-                            <FormControlLabel onChange = {handleChange} name = "availableVaccine" checked = {values.availableVaccine === "true"} value = "true" control={<GreenRadio/>} label="Yes" />
-                          </RadioGroup>
-                        </FormControl> 
-                    </Card>
-                    
-                    
+                    <CustomButton onClick = {handleSaveVirus} className ='save-button'>Save!</CustomButton>
             </div>
             <div className = "virus-model-container">
-                Insert the interactive model of the virus here.
-                
-                
-                
-                
-               
                 <Container virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
-                {values.primary}
-                {values.secondary}
-                {values.virusType}
-                {values.size}
-                "space"
-                {values.availableVaccine}
-                
             </div>
         </div>
     )
 }
 
-export default NewVirusPage;
-
-/*
- <Container colorCode={values.primary}></Container>
-*/
-
-
+export default withRouter(NewVirusPage);

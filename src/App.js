@@ -20,6 +20,7 @@ import BodyPage from './pages/body-page/body-page.component';
 import MapPage from './pages/map-page/map-page.component';
 import UserProvider from './context/UserProvider';
 import HamburgerProvider from './context/HamburgerProvider';
+import VirusModelPage from './pages/virus-model-page/virus-model';
 
 function App() {
   return (
@@ -34,7 +35,9 @@ function App() {
         <Route exact path = "/sign-up" component = {SignUpPage}/>
         <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
         <Route exact path = "/body" component = {BodyPage}></Route>
-        <Route path = "/virus/model" component = {VirusPage} ></Route>
+        <Route path = "/virus/model" component = {VirusModelPage} ></Route>
+        
+        <Route path = "/virus" component = {VirusPage} ></Route>
         {/* <Route path = "/virus/flavivirus" component = {FlavPage} ></Route>
         <Route path = "/virus/mobillivirus" component = {MobilliPage} ></Route>
         <Route path = "/virus/yersenia" component = {YerseniaPage} ></Route>

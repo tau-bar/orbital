@@ -5,7 +5,6 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.css';
-import './LoadingBar.css';
 import TriggersTooltips from './ToolTip';
 import { Canvas, extend, useThree, useFrame } from "react-three-fiber";
 import {

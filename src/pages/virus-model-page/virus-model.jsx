@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../../ThreeSceneAnother';
 
 const VirusModelPage = ({ history }) => {
+    console.log(history);
     const { key } = history.location.state;
     const virusModelPath = {
         coronavirus: {
