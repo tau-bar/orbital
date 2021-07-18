@@ -117,4 +117,16 @@ export const updateVirus = async (user, values) => {
   }
 }
 
+export const deleteVirus = async (user, virusId) => {
+  if (!virusId || !user) return;
+  try {
+    const virusRef = await firestore.doc(`users/${user.uid}`).collection('userViruses').doc(virusId);
+    virusRef
+    .delete()
+    .then(() => alert('Virus has been deleted.'))
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 export default firebase;
