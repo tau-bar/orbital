@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../../ThreeSceneAnother';
+import Container from '../../ThreeScene';
 
 const VirusModelPage = () => {
     return(

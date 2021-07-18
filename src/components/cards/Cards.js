@@ -8,6 +8,7 @@ const Cards = (props) => {
     coronavirus: {
 
       src:'/images/coronavirus.png'
+
     },
     flavivirus: {
       src:'/images/flavivirus.png'
@@ -25,8 +26,7 @@ const Cards = (props) => {
     orthopoxvirus : {
 
       src:'/images/orthopox.png'
-    },
-   
+    },   
   }
 
   return (
@@ -41,9 +41,7 @@ const Cards = (props) => {
                 <CardItem
                 src= {virusData[key].src}
                 label={key.charAt(0).toUpperCase() + key.slice(1)}
-                onClick={() => props.history.push({
-                  pathname: `virus/model/${key}`,
-                  state: {key} })}
+                onClick={() => props.history.push(`/virus/model/${key}`)}
               />)
             }
               )

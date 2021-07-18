@@ -1,18 +1,25 @@
+<<<<<<< HEAD:src/pages/login-page/loginpage.component.jsx
+import React, { useContext, useState } from 'react';
+=======
 import React, {useContext} from 'react';
+>>>>>>> reyaaz:frontend/src/pages/login-page/loginpage.component.jsx
 import { Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 import { withRouter } from 'react-router-dom';
-import {UserContext} from '../../context/UserContext'
+import { UserContext } from '../../context/UserProvider'
 
 
 function LoginPage({ history }) {
-      const [user, setUser] = useContext(UserContext);
+      const user = useContext(UserContext);
 
-      const [values, setValues] = React.useState({
-        username: '',
+      /* Add code here, if already have user, redirect to home page. */
+
+      const [values, setValues] = useState({
+        email: '',
+
         password: '',
       });
 
@@ -20,21 +27,25 @@ function LoginPage({ history }) {
         setValues({ ...values, [prop]: event.target.value });
       };
 
-      const handleSubmit = async (event) => {
+      const signIn = (event) => {
         event.preventDefault();
-        const { username, password } = values;
-        try {
-          await auth.signInWithEmailAndPassword(username, password);
-          //resets the input field to blank after the user submits
+        const { email, password } = values;
+        auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
           setValues({
-            username: "",
-            password: "",
-          });
-          setUser(username);
+            email: '',
+            password: ''
+          })
+        })
+        .catch(error => {
+          alert("Error while signing in.");
+          console.error(error);
+        })
+        .finally(() => {
           history.push('');
-        } catch (error) {
-          alert(error);
-        }
+        })
+        
+        
       }
       
       return (
@@ -43,11 +54,11 @@ function LoginPage({ history }) {
                     <div>
                         <h1 className = 'loginsignuptitle'>Login</h1>
                     </div>
-                    <form onSubmit = {handleSubmit}>
+                    <form onSubmit = {signIn}>
                       <CustomTextField
                         label = "Email"
                         type = "username"
-                        onChange = {handleChange("username")}
+                        onChange = {handleChange("email")}
                       />
                       <CustomTextField
                         label = "Password"

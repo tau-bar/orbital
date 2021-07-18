@@ -177,6 +177,7 @@ class App extends Component {
     }
 }
 
+
 class Container extends React.Component {
     state = {isMounted: true};
     
@@ -187,8 +188,13 @@ class Container extends React.Component {
         return (
             <>
             <div className="LoadingAnimation">
+<<<<<<< HEAD:src/ThreeScene.js
+                {isMounted && <App onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
+                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar">Loading Coronavirus: {loadingPercentage}%</div>}
+=======
                 {isMounted && <App modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
                 {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar"> Loading Virus Model: {loadingPercentage}%</div>}
+>>>>>>> reyaaz:frontend/src/ThreeScene.js
             </div>   
             
         
@@ -196,6 +202,9 @@ class Container extends React.Component {
         )
     }
 }
+
+
+
 
 export default Container;
 
