@@ -100,14 +100,14 @@ class App extends Component {
 
     loadTheModel = () => {
         const loader = new OBJLoader();
-        /*
         const mtlLoader = new MTLLoader();
-        mtlLoader.load("/assets/ebola.mtl",null,(materials)=>{
-            loader.setMaterials(materials);
-            */
-        
 
-        
+        /*
+        mtlLoader.load('/assets/mobillivirus.mtl', function(materials) {
+            materials.preload();
+            loader.setMaterials(materials);   
+        });
+        */    
         
         loader.load(
             /*

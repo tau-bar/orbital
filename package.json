@@ -30,6 +30,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-modal-provider": "^1.7.0",
+    "react-three-fiber": "^6.0.13",
     "reactjs-popup": "^2.0.4",
     "sass": "^1.34.0",
     "three": "^0.104.0",

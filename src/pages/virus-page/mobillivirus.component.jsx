@@ -1,9 +1,9 @@
 import React from 'react';
-import Container from '../../ThreeScene';
+import Container from '../../ThreeSceneAnother';
 
 const MobilliPage = () => {
     return(
-        <Container modelPath ='/assets/mobillivirus.obj'></Container>
+        <Container texturePath = '/assets/mobWrap.png' modelPath ='/assets/finallyMobi.obj'></Container>
     )
 }
 

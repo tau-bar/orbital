@@ -32,12 +32,12 @@ function App() {
         <Route exact path = "/sign-up" component = {SignUpPage}/>
         <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
         <Route exact path = "/body" component = {BodyPage}></Route>
-        <Route path = "/virus/coronavirus" component = {VirusPage} ></Route>
-        <Route path = "/virus/flavivirus" component = {FlavPage} ></Route>
+        <Route path = "/virus/model" component = {VirusPage} ></Route>
+        {/* <Route path = "/virus/flavivirus" component = {FlavPage} ></Route>
         <Route path = "/virus/mobillivirus" component = {MobilliPage} ></Route>
         <Route path = "/virus/yersenia" component = {YerseniaPage} ></Route>
         <Route path = "/virus/ebolavirus" component = {EbolaPage} ></Route>
-        <Route path = "/virus/orthopoxvirus" component = {OrthopoxPage} ></Route>
+        <Route path = "/virus/orthopoxvirus" component = {OrthopoxPage} ></Route> */}
  
         <Route path = "/map" component = {MapPage} ></Route>
       </Switch>

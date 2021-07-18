@@ -190,7 +190,7 @@ const NewVirusPage = () => {
                 {values.secondary}
                 {values.virusType}
                 {values.size}
-                "spac"
+                "space"
                 {values.availableVaccine}
                 
             </div>
