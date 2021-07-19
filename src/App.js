@@ -13,6 +13,7 @@ import MapPage from './pages/map-page/map-page.component';
 import UserProvider from './context/UserProvider';
 import HamburgerProvider from './context/HamburgerProvider';
 import VirusModelPage from './pages/virus-model-page/virus-model';
+import MapComponent from './components/map/map.component';
 
 function App() {
   return (
@@ -25,11 +26,13 @@ function App() {
         <Route exact path = "/" component = {HomePage}/>
         <Route exact path = "/login" component = {LoginPage}/>
         <Route exact path = "/sign-up" component = {SignUpPage}/>
-        <Route exact path = "/virus/create" component = {NewVirusPage}></Route>
+        <Route path = "/virus/create" component = {NewVirusPage}></Route>
         <Route exact path = "/body" component = {BodyPage}></Route>
         <Route path = "/virus/model" component = {VirusModelPage} ></Route>
         <Route path = "/virus" component = {VirusPage} ></Route>
-        <Route path = "/map" component = {MapPage} ></Route>
+        <Route exact path = "/map" component = {MapPage} ></Route>
+        <Route path = "/map" component = {MapComponent}></Route>
+
       </Switch>
     </div>
     </HamburgerProvider>

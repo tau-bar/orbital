@@ -1,11 +1,16 @@
 .my-viruses {
+    color: white;
     background: url('../../assets/images/mv.jpg');
-    background-attachment: fixed;
     background-position: center;
     padding: 20px;
 }
 
 .my-viruses-title {
     margin: 0;
+    font-size: 3em;
     padding: 20px;
+}
+
+.virus-page-text {
+    font-size: 1.5em;
 }

@@ -1,19 +1,23 @@
-import React, { Component } from "react";
-import { useState } from "react";
+import React, { Component, useState, useContext, useEffect } from "react";
+import { UserContext } from "./context/UserProvider";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.css';
+import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
-import { Canvas, extend, useThree, useFrame } from "react-three-fiber";
-import {
-  CubeTextureLoader,
-  CubeCamera,
-  WebGLCubeRenderTarget,
-  RGBFormat,
-  LinearMipmapLinearFilter
-} from "three";
+import LoadingBar from "./components/loading-bar/loading-bar.component";
+import { withRouter } from 'react-router';
+import { getVirus, deleteVirus } from "./firebase/firebase.utils";
+// import { Canvas, extend, useThree, useFrame } from "react-three-fiber";
+// import {
+//   CubeTextureLoader,
+//   CubeCamera,
+//   WebGLCubeRenderTarget,
+//   RGBFormat,
+//   LinearMipmapLinearFilter
+// } from "three";
 
 
 const style = {
@@ -57,25 +61,11 @@ class App extends Component {
                 var bgHeight = img.height;
             } );
             */
-            
-            
- 
+
             var bgTexture = new THREE.TextureLoader().load("/assets/tenor.gif");
             bgTexture.minFilter = THREE.LinearFilter;
             this.scene.background = null;
             
-
-            
-
-
-
-
-           
-        
-
-
-
-
         this.camera = new THREE.PerspectiveCamera(
             30, 
             width/height, 
@@ -131,12 +121,7 @@ class App extends Component {
 
         const hlight = new THREE.AmbientLight(0x404040,100);
         this.scene.add(hlight);
-        */
-
-        
-
-        
-
+        */  
         this.scene.add( lights[ 0 ] );
         this.scene.add( lights[ 1 ] );
         this.scene.add( lights[ 2 ] );
@@ -164,9 +149,6 @@ class App extends Component {
     // Boilerplate code ends here
 
     //Load obj and mtl file here
-
-
-
 
     loadTheModel = () => {
         const loader = new OBJLoader();
@@ -209,9 +191,9 @@ class App extends Component {
 
         
         
-        var OBJFile = '/assets/finallyMobi.obj';
-var MTLFile = '/assets/finallyMobi.mtl';
-var JPGFile = '/assets/mobWrap.png';
+//         var OBJFile = '/assets/finallyMobi.obj';
+// var MTLFile = '/assets/finallyMobi.mtl';
+// var JPGFile = '/assets/mobWrap.png';
 
 /*
 mtlLoader
@@ -231,20 +213,13 @@ mtlLoader
             this.scene.add(object);
         });
 });
-*/
-        
+*/       
         /*
         const mtlLoader = new MTLLoader();
         mtlLoader.load("/assets/ebola.mtl",null,(materials)=>{
             loader.setMaterials(materials);
             */
-        
-            
-        
 
-
-        
-        
         loader.load(
             /*
             '/assets/eleph.obj'
@@ -282,15 +257,11 @@ mtlLoader
                 bbox.setFromObject(obj);
                 bbox.getCenter(cent);
                 bbox.getSize(size);
-
-                
-                
+              
                 obj.position.x = -cent.x;
                 obj.position.y = -cent.y;
                 obj.position.z = -cent.z;
         //obj.position.y = 3;
-
-                
 
   /*
             object.traverse(function (child) {   // aka setTexture
@@ -319,11 +290,7 @@ mtlLoader
   this.scene.add(cube);
   cubes.push(cube);
   */
-                
-    
-
-
-                
+                              
                 this.scene.add( obj );
 
                 
@@ -334,7 +301,7 @@ mtlLoader
             },
              ( xhr ) => {
                 const loadingPercentage = Math.ceil(xhr.loaded / xhr.total * 100);
-                console.log( ( loadingPercentage ) + '% loaded' );
+                // console.log( ( loadingPercentage ) + '% loaded' );
                 this.props.onProgress(loadingPercentage);
             },
              ( error ) => {
@@ -350,50 +317,75 @@ mtlLoader
     */
         
     };
-    
-    
-
-            
     render() {
+        
      
         return (
-            <> 
+            <div> 
             <div style={style} ref={ref => (this.mount = ref)} />
             <div className="ToolTipPos">
-            <TriggersTooltips></TriggersTooltips>
+                <TriggersTooltips></TriggersTooltips>
             </div>
-            </>
+            </div>
         );
         
     }
 }
 
-class Container extends React.Component {
-    state = {isMounted: true};
-    
-    
+const Container = (props) => {
+    const [state, setState] = useState({
+        isMounted: true,
+        loadingPercentage: 0
+    })
+    const [values, setValues] = useState('')
 
-    render() {
-        const {isMounted = true, loadingPercentage = 0} = this.state;
-        return (
-            
-            <div id="canvas">
-            <div className="LoadingAnimation">
-        
-                {isMounted && <App texturePath={this.props.img} modelPath={this.props.modelPath} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />}
-                {isMounted && loadingPercentage !== 100 && <div className = "LoadingBar"> Loading Virus Model: {loadingPercentage}%</div>}
-            </div>   
-            
+    const { isMounted, loadingPercentage } = state;
+    const user = useContext(UserContext);
+
+    useEffect(() => {
+        if (props.history.location.state.id) {
+            const getVirusData = async () => {
+                if (user !== null) {
+                    const virus = await getVirus(user, props.history.location.state.id);
       
-      
+                    await setValues({
+                      id: props.history.location.state.id,
+                      ...virus
+                    })
+                }
+            }
+            getVirusData();
+        }
+      })
+
+    const handleEdit = () => {
+        props.history.push({
+            pathname: `/virus/create/${values.id}`,
+            state: {
+                id: values.id
+            },
+        })
+    }
+
+    const handleDelete = async () => {
+        await deleteVirus(user, values.id)
+        .then(alert('Virus deleted!'))
+        .finally(props.history.push('/virus'))   
+    }
+
     
-            
-        
-          
-         
+    
+        return (    
+        <div id="canvas">
+            <button onClick = {handleEdit}>Edit</button>
+            <button onClick = {handleDelete}>Delete</button>
+            <div className="LoadingAnimation">
+            {isMounted && <App texturePath={props.img} modelPath={props.modelPath} onProgress={loadingPercentage => setState({ ...state, loadingPercentage: loadingPercentage })} />}
+            {isMounted && loadingPercentage !== 100 && <LoadingBar percentage = { loadingPercentage } ></LoadingBar>}
+            </div>    
          </div>
         )
-    }
 }
 
-export default Container;
+
+export default withRouter(Container);

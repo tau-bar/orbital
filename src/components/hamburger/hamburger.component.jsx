@@ -19,11 +19,12 @@ const Hamburger = (props) => {
     const linkOnClick = (url) => () => {
       setIsActive(false);
       props.history.push(url)
+      
     }
 
     return (
         <div className = 'hamburger-component'>
-        <Link onClick = {linkOnClick} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
+        <Link onClick = {() => setIsActive(false)} to = '/' className = 'title-logo'><h1 className = 'logo-text'>Virusim</h1></Link>
         <div className = 'login-button'>
           {user === undefined ? 
           <CustomButton onClick = {linkOnClick('/sign-up')}>Log In</CustomButton> :
@@ -33,13 +34,13 @@ const Hamburger = (props) => {
         </div>
         <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
-        <a href="#" class="menu-link">
+        <button href="#" class="menu-link">
           <span class="menu-icon">
             <span class="menu-line menu-line-1"></span>
             <span class="menu-line menu-line-2"></span>
             <span class="menu-line menu-line-3"></span>
           </span>
-        </a>
+        </button>
       </div>
     
         <div class={`menu-overlay ${isActive ? "open" : ""}`}>
