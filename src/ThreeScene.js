@@ -5,6 +5,7 @@ import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
+import LoadingBar from "./components/loading-bar/loading-bar.component";
 
 
 const style = {
@@ -162,14 +163,6 @@ class VirusModel extends Component {
         
     }
 }
-
-const LoadingBar = ({ percentage }) => (
-    <div className = "LoadingBar">
-        <div className = 'percentage-bar'>
-            <div className = 'red-bar' style = {{width: `${percentage + 20}%`}}></div></div>
-        Loading virus model: {percentage}%
-    </div>
-)
 
 class Container extends Component {
     constructor() {

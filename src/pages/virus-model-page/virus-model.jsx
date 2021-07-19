@@ -2,8 +2,9 @@ import React from 'react';
 import Container from '../../ThreeSceneAnother';
 
 const VirusModelPage = ({ history }) => {
-    console.log(history);
-    const { key } = history.location.state;
+  
+  const { key } = history.location.state;
+
     const virusModelPath = {
         coronavirus: {
           src:'/assets/eleph.obj',
@@ -32,7 +33,9 @@ const VirusModelPage = ({ history }) => {
        
       }
     return(
+      <div>
         <Container img = {virusModelPath[key].img} modelPath ={virusModelPath[key].src}></Container>
+      </div>
     )
 }
 

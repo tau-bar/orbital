@@ -5,7 +5,7 @@ import body from '../../assets/images/body.jpg'
 
 function BodyAnimation() {
     return (
-            <InfoSection img = {body} title = "Virus Reproduction">
+            <InfoSection short img = {body} title = "Virus Reproduction">
                 <p>The video demonstrates how a virus reproduces once it enters the human body.</p>
                 <ReactPlayer height = '200px' width = '360px' volume controls url = "https://youtu.be/DDDdPDlLvJs"></ReactPlayer>
             </InfoSection>

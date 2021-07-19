@@ -7,6 +7,7 @@
 
 .cards-title {
   color: white;
+  font-size: 3em;
   padding-top: 30px;
 }
 
@@ -20,6 +21,7 @@
 
 .card-item {
   width: 200px;
+  max-width: 220px;
   height: 200px;
   flex: 3 3 auto;
   display: flex;
@@ -65,7 +67,7 @@
     }
 
     .subtitle {
-      font-family: 'Roboto Condensed', sans-serif;
+      font-family: 'Signika Negative', sans-serif;
       font-size: 20px;
       font-weight: bold;
       padding-right: 20px;

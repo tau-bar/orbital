@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import ColourPicker from '../../components/colour-picker/colour-picker.component';
 import './new-virus.styles.scss';
-import { Card,
-         FormControl,
-        Typography,
+import { 
+        FormControl,
         InputLabel,
         MenuItem,
         Select,
-        Slider} from '@material-ui/core';
+        Slider
+      } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../../context/UserProvider';
 import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
@@ -22,7 +22,6 @@ const NewVirusPage = ({ history }) => {
   
     const [values, setValues] = useState(
         {
-            id: "",
             virusName: "",
             virusType: "",
             primary: "",
@@ -32,10 +31,18 @@ const NewVirusPage = ({ history }) => {
     )
     const user = useContext(UserContext);
 
+    const virusTypes = 
+      ['coronavirus',
+        'flavivirus',
+        'mobillivirus',
+        'yersenia',
+        'ebolavirus',
+        'orthopoxvirus']
+
     useEffect(() => {
       const getVirusData = async () => {
         const { state } = history.location
-          if (user !== null && state !== undefined && values.id === "") {
+          if (user !== null && state !== undefined && values.id === undefined) {
               const virus = await getVirus(user, state.id);
 
               setValues({
@@ -45,12 +52,11 @@ const NewVirusPage = ({ history }) => {
           }
       }
       getVirusData();
-  }, [user])
-  console.log(values);
+  })
 
 
     const handleSaveVirus = () => {
-      if (values.id === "") {
+      if (values.id === undefined) {
         if (user === undefined) {
           alert('You need to be signed in to create a virus!');
           return;
@@ -72,13 +78,19 @@ const NewVirusPage = ({ history }) => {
     }
 
     const handleChange = (event) => {
-        console.log(event)
         const { name, value } = event.target;
-        setValues({
+        if (name === 'virusType') {
+          setValues({
+            ...values,
+            [name]: virusTypes[value - 1],
+          })
+        } else {
+          setValues({
             ...values,
             [name]: value,
             
-        })  
+          })  
+        } 
     }
 
     const handleSliderChange = name => (event, value) => {
@@ -101,14 +113,6 @@ const NewVirusPage = ({ history }) => {
       }));
 
       const classes = useStyles();
-
-      const Title = ({ children }) => {
-        return (<Typography variant="h5" component="h2" style = {{paddingBottom: '30px'}}>
-        {children}
-        </Typography>)
-      }
-
-      const virusTypes = ["coronavirus", "flavivirus", "mobillivirus", "yersinia", "ebola", "orthopox"];
 
     return (
         <div className = 'new-virus-page'>
@@ -135,7 +139,7 @@ const NewVirusPage = ({ history }) => {
                         name = "virusType"
                         labelId="virus-select-outlined-label"
                         id="virus-select-outlined"
-                        value={values.virusType ? values.virusType : ""}
+                        value={values.virusType ? virusTypes.indexOf(values.virusType) + 1 : ""}
                         onChange={handleChange}
                         label="Choose virus"
                         >

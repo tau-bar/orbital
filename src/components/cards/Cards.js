@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cards.scss';
+import '../../pages/virus-page/virus-page.styles.scss';
 import CardItem from './CardItem';
 import { withRouter } from 'react-router-dom';
 import viruses from '../../assets/images/viruses.jpg'
@@ -33,7 +34,7 @@ const Cards = (props) => {
     className='cards'
     style={{ backgroundImage: `url(${viruses})` }}>
       <h1 className = 'cards-title'>Understanding Viruses</h1>
-      <p style = {{color: 'white'}}>Click on a card to view the interactive virus model!</p>
+      <p className = 'virus-page-text' style = {{color: 'white'}}>Click on a card to view the interactive virus model!</p>
       <div className='cards-container'>
           {
             Object.keys(virusData).map((key, index) => {

@@ -17,39 +17,22 @@ const useScript = url => {
     }, [url]);
   };
 
-const links = [
-    6562563,
-    6593126
-]
 
-const pandemics = ["covid-19", "ebola", "black plague"]
+const MapComponent = ({ history }) => {
 
-const MapComponent = () => {
-    const [current, setCurrent] = useState(0);
     return (
-        <div className = 'map-component'>
-            <div class="flourish-embed flourish-map" data-src={`visualisation/${links[current]}`}>
-            {useScript("https://public.flourish.studio/resources/embed.js")}
-            </div>
-            <div className = 'map-settings'>
-            {pandemics.map((p, i) => {
-             if (i === current) {
-                 return (
-                     <div className = 'map-buttons'>
-                         <Button color = "secondary" variant = "contained">{p}</Button>
-                     </div>
-                 )
-             } else {
-                 return (
-                    <div className = 'map-buttons'>
-                         <Button onClick = {() => setCurrent(i)} color = "primary" variant = "contained" >{p}</Button>
-                     </div>
-                    )
-                 }
-            })}
-         </div>
+        <div className = 'map-page'>
+            <div className = 'map-component'>
+                <div class="flourish-embed flourish-map" data-src={history.location.state}>
+                    {useScript("https://public.flourish.studio/resources/embed.js")}
+                </div>
+            </div>    
         </div>
     );   
 }
+
+/* 
+
+*/
 
 export default MapComponent;
