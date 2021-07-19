@@ -1,0 +1,14 @@
+.tooltip-button {
+    font-family: 'Signika Negative', sans-serif;
+    color: white;
+    margin: 20px;
+
+    &:hover {
+        background-color: rgb(187, 187, 187);
+    }
+}
+
+.tooltip-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5em;
+}

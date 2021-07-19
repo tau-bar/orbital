@@ -322,10 +322,11 @@ mtlLoader
      
         return (
             <div> 
+            
             <div style={style} ref={ref => (this.mount = ref)} />
             <div className="ToolTipPos">
                 <TriggersTooltips></TriggersTooltips>
-            </div>
+            </div> 
             </div>
         );
         
