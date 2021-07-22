@@ -322,10 +322,11 @@ mtlLoader
      
         return (
             <div> 
+            
             <div style={style} ref={ref => (this.mount = ref)} />
             <div className="ToolTipPos">
                 <TriggersTooltips></TriggersTooltips>
-            </div>
+            </div> 
             </div>
         );
         
@@ -343,7 +344,7 @@ const Container = (props) => {
     const user = useContext(UserContext);
 
     useEffect(() => {
-        if (props.history.location.state.id) {
+        if (props.history.location.state) {
             const getVirusData = async () => {
                 if (user !== null) {
                     const virus = await getVirus(user, props.history.location.state.id);

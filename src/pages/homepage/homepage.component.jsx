@@ -28,7 +28,7 @@ const Home = ({ history }) => {
           <p>For example, COVID-19 spreads through droplets in the air. 🦠 </p>
           <p>So, wearing a mask reduces significantly the droplets a virus carrier emits. 😷</p>
           <CustomButton onClick = {() => history.push('/virus')} filled>
-            See the viruses
+            See the viruses <i class="fas fa-viruses"></i>
           </CustomButton>
           <p>Scroll down to see what makes up a virus!</p>
         </InfoSection>
@@ -43,7 +43,7 @@ const Home = ({ history }) => {
       </InfoSection>
       <Timeline/>
       <InfoSection img = {vaccine} title = "Protect yourself and others.">
-        <h1 style = {{fontSize: '4rem', fontWeight:'bold'}}>Get vaccinated.</h1>
+        <h1 style = {{fontSize: '4rem', fontWeight:'bold'}}>Get vaccinated. <i class="fas fa-shield-virus"></i></h1>
       </InfoSection>
     </div>
 

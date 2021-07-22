@@ -14,6 +14,8 @@ import UserProvider from './context/UserProvider';
 import HamburgerProvider from './context/HamburgerProvider';
 import VirusModelPage from './pages/virus-model-page/virus-model';
 import MapComponent from './components/map/map.component';
+import ProfilePage from './pages/profile-page/profile-page';
+import ForgotPassword from './pages/login-page/forgot-password';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path = "/virus" component = {VirusPage} ></Route>
         <Route exact path = "/map" component = {MapPage} ></Route>
         <Route path = "/map" component = {MapComponent}></Route>
+        <Route exact path = "/profile" component = {ProfilePage}></Route>
+        <Route exact path = "/forgot-password" component = {ForgotPassword}></Route>
 
       </Switch>
     </div>
