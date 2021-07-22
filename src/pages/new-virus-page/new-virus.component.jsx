@@ -52,7 +52,7 @@ const NewVirusPage = ({ history }) => {
           }
       }
       getVirusData();
-  })
+  }, [])
 
 
     const handleSaveVirus = () => {

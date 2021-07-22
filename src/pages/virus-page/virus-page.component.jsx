@@ -28,7 +28,7 @@ const VirusPage = ({ history }) => {
         }
     }
     getViruses();
-})
+}, [])
 
   const noUserMyViruses = () => {
       return (

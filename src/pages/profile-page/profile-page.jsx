@@ -8,21 +8,7 @@ import CustomTextField from '../../components/text-field/text-field.component';
 
 const ProfilePage = ({ history }) => {
     const user = useContext(UserContext);
-    const [viruses, setViruses] = useState([]) 
     const [password, setPassword] = useState("");
-
-    useEffect(() => {
-      if (!user) return;
-      const getViruses = async () => {
-          if (viruses.length === 0 && user !== null) {
-              const viruses = await getUserViruses(user);
-              if (viruses.length !== 0) {
-                  setViruses(viruses);
-              }
-          }
-      }
-      getViruses();
-  })
 
   const handleDelete = () => {
       deleteUser(user)

@@ -40,8 +40,7 @@ const MapPage = ({ history }) => {
                   state: pandemics[key].data
                 })
                 window.location.reload()
-              }} 
-              filled 
+              }}  
               map >
                 {pandemics[key].name}
               </CustomButton>
