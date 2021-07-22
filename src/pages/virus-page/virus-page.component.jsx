@@ -37,7 +37,9 @@ const VirusPage = ({ history }) => {
               <CustomButton filled onClick = {() => {
                   setIsActive(false);
                   history.push('/login')
-              }}>Sign in</CustomButton>
+              }}>
+              Sign in <i class="fas fa-sign-in-alt"></i>
+              </CustomButton>
           </div>
       )
   }
@@ -50,13 +52,17 @@ const VirusPage = ({ history }) => {
                               const { id, virusType, virusName } = v
                               return(
                       
-                                  <CardItem key = {id} label = {virusName} src = {virusData[virusType].src} onClick = {() => history.push({
-                                      pathname: `/virus/model/${virusType}`,
-                                      state: {
-                                          id,
-                                          key: virusType,
-                                      }
-                                  })}/>)
+                                  <CardItem key = {id} label = {virusName} src = {virusData[virusType].src} onClick = {() => {
+                                    history.push({
+                                        pathname: `/virus/model/${virusType}`,
+                                        state: {
+                                            id,
+                                            key: virusType,
+                                        }
+                                    })
+                                    setIsActive(false);
+                                }
+                                }/>)
                                   
                           })
                       }
@@ -65,7 +71,9 @@ const VirusPage = ({ history }) => {
       }
       return (
           <div className = 'cards'>
-          <p className = 'virus-page-text'>Looks like you don't have any viruses yet!</p>
+          <p className = 'virus-page-text'>
+          Looks like you don't have any viruses yet!
+          </p>
           <CustomButton filled onClick = {() => history.push('/virus/create')}>Make a virus!</CustomButton>
           </div>
       )
