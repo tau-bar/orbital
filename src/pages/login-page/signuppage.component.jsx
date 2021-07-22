@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Container, Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';

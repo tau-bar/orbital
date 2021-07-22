@@ -18,6 +18,7 @@ const VirusPage = ({ history }) => {
   const [viruses, setViruses] = useState([]) 
 
   useEffect(() => {
+    console.log('test');
     if (!user) return;
     const getViruses = async () => {
         if (viruses.length === 0 && user !== null) {
@@ -28,7 +29,7 @@ const VirusPage = ({ history }) => {
         }
     }
     getViruses();
-}, [])
+})
 
   const noUserMyViruses = () => {
       return (
