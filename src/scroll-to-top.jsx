@@ -9,7 +9,7 @@ function ScrollToTop({ history, children }) {
     return () => {
       unlisten();
     }
-  }, []);
+  });
 
   return <Fragment>{children}</Fragment>;
 }

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserProvider';
-import { changePassword, getUserViruses, deleteUser } from '../../firebase/firebase.utils';
+import { changePassword, deleteUser } from '../../firebase/firebase.utils';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
 import './profile-page.styles.scss';
