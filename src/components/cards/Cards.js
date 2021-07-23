@@ -34,6 +34,7 @@ const Cards = (props) => {
   const setIsActive = useContext(HamburgerContext)[1];
   return (
     <div 
+    data-testId = "cards"
     className='cards'
     style={{ backgroundImage: `url(${viruses})` }}>
       <h1 className = 'cards-title'>Understanding Viruses</h1>

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import './ThreeScene.scss';
+import TriggersTooltips from './ToolTip';
+import LoadingBar from "./components/loading-bar/loading-bar.component";
+
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
-import './ThreeScene.scss';
-import TriggersTooltips from './ToolTip';
-import LoadingBar from "./components/loading-bar/loading-bar.component";
+
+
 
 
 const style = {
