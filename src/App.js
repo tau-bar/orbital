@@ -5,6 +5,9 @@ import Hamburger from './components/hamburger/hamburger.component';
 import { Route, Switch } from 'react-router-dom';
 import SignUpPage from './pages/login-page/signuppage.component';
 import NewVirusPage from './pages/new-virus-page/new-virus.component';
+import lethality from './pages/new-virus-page/lethality';
+import About from './About';
+import AboutText from './AboutText';
 
 
 import VirusPage from './pages/virus-page/virus-page.component';
@@ -27,11 +30,16 @@ function App() {
         <Route exact path = "/login" component = {LoginPage}/>
         <Route exact path = "/sign-up" component = {SignUpPage}/>
         <Route path = "/virus/create" component = {NewVirusPage}></Route>
-        <Route exact path = "/body" component = {BodyPage}></Route>
+        <Route exact path = "/virus/lethality" component = {lethality}></Route>
+        <Route exact path = "/body" component = {BodyPage}></Route>        
         <Route path = "/virus/model" component = {VirusModelPage} ></Route>
+    
+        
         <Route path = "/virus" component = {VirusPage} ></Route>
         <Route exact path = "/map" component = {MapPage} ></Route>
         <Route path = "/map" component = {MapComponent}></Route>
+        <Route exact path = "/about" component = {About} ></Route>
+        <Route exact path = "/aboutText" component = {AboutText} ></Route>
 
       </Switch>
     </div>

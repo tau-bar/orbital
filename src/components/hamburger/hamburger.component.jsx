@@ -39,6 +39,7 @@ const Hamburger = (props) => {
             <span class="menu-line menu-line-1"></span>
             <span class="menu-line menu-line-2"></span>
             <span class="menu-line menu-line-3"></span>
+            <span class="menu-line menu-line-4"></span>
           </span>
         </button>
       </div>
@@ -48,6 +49,7 @@ const Hamburger = (props) => {
             <p onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus Reproduction</p>
             <p onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map</p>
             <p onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create New Virus</p>
+            <p onClick = {(linkOnClick('/about'))} className = 'hm-link'>Virus Lethality</p>
         </div>
         </div>
     )

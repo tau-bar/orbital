@@ -7,7 +7,7 @@ const VirusModelPage = ({ history }) => {
 
     const virusModelPath = {
         coronavirus: {
-          src:'/assets/eleph.obj',
+          src:'/assets/coronavirus.obj',
           img:'/assets/coronaWrap.png'
         },
         flavivirus: {
@@ -26,10 +26,13 @@ const VirusModelPage = ({ history }) => {
           src:'/assets/ebolavirus.obj',
           img: '/assets/yerWrap.png'
         },
+        
         orthopoxvirus : {
           src:'/assets/orthopox.obj',
-          img: '/assets/orthoWrap.png'
+          img: '/assets/clear.png'
         },
+        
+        
        
       }
     return(

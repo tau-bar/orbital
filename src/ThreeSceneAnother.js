@@ -5,19 +5,14 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three-obj-mtl-loader";
 import './ThreeScene.css';
-import './ThreeScene.scss';
 import TriggersTooltips from './ToolTip';
 import LoadingBar from "./components/loading-bar/loading-bar.component";
 import { withRouter } from 'react-router';
 import { getVirus, deleteVirus } from "./firebase/firebase.utils";
-// import { Canvas, extend, useThree, useFrame } from "react-three-fiber";
-// import {
-//   CubeTextureLoader,
-//   CubeCamera,
-//   WebGLCubeRenderTarget,
-//   RGBFormat,
-//   LinearMipmapLinearFilter
-// } from "three";
+
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 const style = {
@@ -25,10 +20,9 @@ const style = {
     width: "80vh"
 
 };
+  const ratio = window.devicePixelRatio;
 
 class App extends Component {
-
-    //Boilerplate code starts here 
 
     componentDidMount() {
         this.sceneSetup();
@@ -45,27 +39,12 @@ class App extends Component {
     }
 
     sceneSetup = () => {
-        const width = this.mount.clientWidth / 2;
-        const height = this.mount.clientHeight;
-
-        this.scene = new THREE.Scene();
-        /*
-        this.scene.background = new THREE.Color( 0xff0000 );
-        */
-
-        /*
-        const bgTexture = loader.load("/assets/1.jpg",
-            function ( texture ) {
-                var img = texture.image;
-                var bgWidth= img.width;
-                var bgHeight = img.height;
-            } );
-            */
-
-            var bgTexture = new THREE.TextureLoader().load("/assets/tenor.gif");
-            bgTexture.minFilter = THREE.LinearFilter;
-            this.scene.background = null;
-            
+        
+        
+        const width = this.mount.clientWidth * 2.218;
+        const height = this.mount.clientHeight * 5;
+        this.scene = new THREE.Scene();    
+        this.scene.background = null;
         this.camera = new THREE.PerspectiveCamera(
             30, 
             width/height, 
@@ -77,24 +56,20 @@ class App extends Component {
         this.controls.minDistance=3
         this.controls.maxDistance=8
         this.controls.autoRotate=true
-
-        this.controls.update();
-        
+        this.controls.update();     
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setClearColor( 0x000000, 0 );
-
-        //first
-        this.renderer.setSize( width *4.5 , height * 6.1) ;
+        this.renderer.setSize( width, height) ;
         this.mount.appendChild( this.renderer.domElement );
     };
 
     addLights = () => {
+        if (this.props.modelPath !== "/assets/orthopox.obj" && this.props.modelPath !== "/assets/yersinia.obj") {
         const lights = [];
-        //color code here
+
         const color1 = new THREE.Color(0xFFFFFF);
         const color2 = new THREE.Color(0xFFFFFF);
         const color3 = new THREE.Color(0xFFFFFF);
-
 
         lights[ 0 ] = new THREE.PointLight( color1, 1, 0 );
         lights[ 1 ] = new THREE.PointLight( color2, 1, 0 );
@@ -104,29 +79,10 @@ class App extends Component {
         lights[ 1 ].position.set( 1000, 2000, 1000 );
         lights[ 2 ].position.set( - 1000, - 2000, - 1000 );
 
-        
-        /*
-        const directionalLight = new THREE.DirectionalLight(0xffffff,100);
-        directionalLight.position.set(0,1,0);
-        directionalLight.castShadow= true;
-        this.scene.add(directionalLight);
-        const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-        this.scene.add( light );
-        */
-        
-        /*
-        const light = new THREE.PointLight(0xc4c4c4,10);
-        light.position.set(0,300,500);
-        this.scene.add(light);
-
-        const hlight = new THREE.AmbientLight(0x404040,100);
-        this.scene.add(hlight);
-        */  
         this.scene.add( lights[ 0 ] );
         this.scene.add( lights[ 1 ] );
         this.scene.add( lights[ 2 ] );
-
-        
+        }    
     };
 
     startAnimationLoop = () => {
@@ -134,21 +90,6 @@ class App extends Component {
         this.renderer.render( this.scene, this.camera );
         this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
     };
-
-    /*
-    handleWindowResize = () => {
-        const width = this.mount.clientWidth;
-        const height = this.mount.clientHeight;
-        //second
-        this.renderer.setSize( width, height);
-        this.camera.aspect = height;
-        this.camera.updateProjectionMatrix();
-    };
-    */
-
-    // Boilerplate code ends here
-
-    //Load obj and mtl file here
 
     loadTheModel = () => {
         const loader = new OBJLoader();
@@ -166,64 +107,8 @@ class App extends Component {
             bumpScale: 1,
             metalness: 1.0,
             roughness: 1});
-        
-
-        /*
-        const material = new THREE.MeshLambertMaterial({map: textureLoader.load(this.props.texturePath)});
-        const material2 = new THREE.MeshLambertMaterial({map:
-            textureLoader.load(this.props.texturePath),
-            emissiveIntensity : 0.6,
-            bumpScale: 1,
-            metalness: 1.0,
-            roughness: 1.0});
-            */
-
-            
-
-        /*
-        mtlLoader.load('/assets/virusami.mtl', function(materials) {
-            materials.preload();
-            loader.setMaterials(materials);  
-             
-        });
-
-        */
-
-        
-        
-//         var OBJFile = '/assets/finallyMobi.obj';
-// var MTLFile = '/assets/finallyMobi.mtl';
-// var JPGFile = '/assets/mobWrap.png';
-
-/*
-mtlLoader
-.load(MTLFile, function (materials) {
-    materials.preload();
-    loader
-        .setMaterials(materials)
-        .load(OBJFile, function (object) {
-            object.position.y = - 95;
-            var texture = new THREE.TextureLoader().load(JPGFile);
-
-            object.traverse(function (child) {   // aka setTexture
-                if (child instanceof THREE.Mesh) {
-                    child.material.map = texture;
-                }
-            });
-            this.scene.add(object);
-        });
-});
-*/       
-        /*
-        const mtlLoader = new MTLLoader();
-        mtlLoader.load("/assets/ebola.mtl",null,(materials)=>{
-            loader.setMaterials(materials);
-            */
 
         loader.load(
-            /*
-            '/assets/eleph.obj'
-            */
            this.props.modelPath, 
             ( object ) => {
                 var cent = new THREE.Vector3();
@@ -232,7 +117,6 @@ mtlLoader
                 bbox.getCenter(cent);
                 bbox.getSize(size);
 
-                //Rescale the object to normalized space
                 var maxAxis = Math.max(size.x, size.y, size.z);
                 object.scale.multiplyScalar(1.0 / maxAxis);
 
@@ -246,13 +130,12 @@ mtlLoader
 
                 var geo = object.children[0].geometry;
         var mats = [material, material2];
-        //These are just some random groups to demonstrate multi material, you need to set these up so they actually work for your object, either in code or in your 3D editor
         geo.addGroup(0,geo.getAttribute("position").count/2,0);
         geo.addGroup(geo.getAttribute("position").count/2,
         geo.getAttribute("position").count/2,1);
-        //Mesh with multiple materials for material parameter
-        const obj = new THREE.Mesh(geo, mats);
+        const obj = new THREE.Mesh(geo, mats);        
         obj.scale.multiplyScalar(1.0 / maxAxis);
+
 
                 bbox.setFromObject(obj);
                 bbox.getCenter(cent);
@@ -261,74 +144,71 @@ mtlLoader
                 obj.position.x = -cent.x;
                 obj.position.y = -cent.y;
                 obj.position.z = -cent.z;
-        //obj.position.y = 3;
+                if (this.props.modelPath === "/assets/orthopox.obj") {
+                    this.scene.add( object ); 
+                    const reds = [];
+ 
+        const red1 = new THREE.Color(0x6e4c4b);
+        const red2 = new THREE.Color(0xEE4B2B);
+        const red3 = new THREE.Color(0x6E260E);
 
-  /*
-            object.traverse(function (child) {   // aka setTexture
-                if (child instanceof THREE.Mesh) {
-                    console.log("threeMesh instance")
-                    child.material.map = texture;
-                }
-            });
-            */
 
-            
-/*
-               
-                const boxWidth = 1;
-  const boxHeight = 1;
-  const boxDepth = 1;
-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+        reds[ 0 ] = new THREE.PointLight( red1, 1, 0 );
+        reds[ 1 ] = new THREE.PointLight( red2, 1, 0 );
+        reds[ 2 ] = new THREE.PointLight( red3, 1, 0 );
 
-  const cubes = [];  // just an array we can use to rotate the cubes
-  const loader = new THREE.TextureLoader();
+        reds[ 0 ].position.set( 0, 2000, 0 );
+        reds[ 1 ].position.set( 1000, 2000, 1000 );
+        reds[ 2 ].position.set( - 1000, - 2000, - 1000 );
 
-  const material = new THREE.MeshBasicMaterial({
-    map: loader.load('/assets/mobWrap.png'),
-  });
-  const cube = new THREE.Mesh(geometry, material);
-  this.scene.add(cube);
-  cubes.push(cube);
-  */
-                              
-                this.scene.add( obj );
+        
+        this.scene.add( reds[ 0 ] );
+        this.scene.add( reds[ 1 ] );
+        this.scene.add( reds[ 2 ] ); 
+                    
+                } else if (this.props.modelPath === "/assets/yersinia.obj" || this.props.modelPath === "/assets/ebolavirus.obj") {
+                    this.scene.add( object ); 
+                    const greens = [];
 
-                
-                
+        const green1 = new THREE.Color(0x66ff00);
+        const green2 = new THREE.Color(0x228B22);
+        const green3 = new THREE.Color(0x00FF00);
+
+
+        greens[ 0 ] = new THREE.PointLight( green1, 1, 0 );
+        greens[ 1 ] = new THREE.PointLight( green2, 1, 0 );
+        greens[ 2 ] = new THREE.PointLight( green3, 1, 0 );
+
+        greens[ 0 ].position.set( 0, 2000, 0 );
+        greens[ 1 ].position.set( 1000, 2000, 1000 );
+        greens[ 2 ].position.set( - 1000, - 2000, - 1000 );
+
+        
+        this.scene.add( greens[ 0 ] );
+        this.scene.add( greens[ 1 ] );
+        this.scene.add( greens[ 2 ] ); 
+                }else {
+                    this.scene.add( obj );
+                }        
+
                 const el = this.scene.getObjectByName("Elephant_4");             
                 this.model = el;
-                
             },
              ( xhr ) => {
                 const loadingPercentage = Math.ceil(xhr.loaded / xhr.total * 100);
-                // console.log( ( loadingPercentage ) + '% loaded' );
                 this.props.onProgress(loadingPercentage);
             },
              ( error ) => {
-
                 console.log( 'An error happened:' + error );
-
-            },
-            
-        
+            },        
         );
-        /*
-    })
-    */
-        
     };
     render() {
-        
-     
         return (
-            <div> 
+            <div className="sceneBg"> 
             <div style={style} ref={ref => (this.mount = ref)} />
-            <div className="ToolTipPos">
-                <TriggersTooltips></TriggersTooltips>
-            </div>
             </div>
         );
-        
     }
 }
 
@@ -373,19 +253,42 @@ const Container = (props) => {
         .finally(props.history.push('/virus'))   
     }
 
-    
+    const title = props.modelPath.split('/')
+    const realTitle = title[2].split('.')
     
         return (    
         <div id="canvas">
-            <button onClick = {handleEdit}>Edit</button>
-            <button onClick = {handleDelete}>Delete</button>
             <div className="LoadingAnimation">
+                <h1 style={{ color: 'white' }}>{realTitle[0]}</h1>
+                <TriggersTooltips></TriggersTooltips>
+                <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={handleDelete}
+        
+        startIcon={<DeleteIcon />}
+      >
+        Delete
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={handleEdit}
+        startIcon={<SaveIcon />}
+      >
+        Save/Edit
+      </Button>
+            </div>
+            <div className="LoadingAnimation">
+                <div className="sceneBg">
             {isMounted && <App texturePath={props.img} modelPath={props.modelPath} onProgress={loadingPercentage => setState({ ...state, loadingPercentage: loadingPercentage })} />}
+            </div>
             {isMounted && loadingPercentage !== 100 && <LoadingBar percentage = { loadingPercentage } ></LoadingBar>}
-            </div>    
+            </div>   
          </div>
         )
 }
-
 
 export default withRouter(Container);

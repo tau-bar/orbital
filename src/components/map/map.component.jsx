@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import './map.styles.scss';
+/*
 import Button from '@material-ui/core/Button';
+*/
 
 const useScript = url => {
     useEffect(() => {

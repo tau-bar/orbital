@@ -17,10 +17,13 @@ import vaccine from '../../assets/images/vaccine.jpg';
 import ReactPlayer from 'react-player/lazy'
 import CustomButton from '../../components/custom-button/custom-button.component.jsx';
 
+
 const Home = ({ history }) => {
   return (
+   
     <div> 
-        <div className='hero-container'>
+  
+      <div className='hero-container'>
           <video className = 'home-img' src="/videos/Start.mp4" loop autoPlay muted/>
         </div>
         <InfoSection img = {infoimg1} title = "What is a virus?">
@@ -45,13 +48,21 @@ const Home = ({ history }) => {
       <InfoSection img = {vaccine} title = "Protect yourself and others.">
         <h1 style = {{fontSize: '4rem', fontWeight:'bold'}}>Get vaccinated.</h1>
       </InfoSection>
+      
+   
+        
     </div>
+    
 
     
   );
 }
 
 export default withRouter(Home);
+
+/*
+
+*/
 
 
 
