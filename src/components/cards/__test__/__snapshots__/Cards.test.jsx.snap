@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cards matches snapshot 1`] = `
+<div
+  className="cards"
+  data-testId="cards"
+  style={
+    Object {
+      "backgroundImage": "url(viruses.jpg)",
+    }
+  }
+>
+  <h1
+    className="cards-title"
+  >
+    Understanding Viruses
+  </h1>
+  <p
+    className="virus-page-text"
+    style={
+      Object {
+        "color": "white",
+      }
+    }
+  >
+    Click on a card to view the interactive virus model!
+  </p>
+  <div
+    className="cards-container"
+  >
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/coronavirus.png)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Coronavirus
+        </span>
+      </div>
+    </div>
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/flavivirus.png)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Flavivirus
+        </span>
+      </div>
+    </div>
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/morbillivirus.png)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Mobillivirus
+        </span>
+      </div>
+    </div>
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/yersinia.png)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Yersenia
+        </span>
+      </div>
+    </div>
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/ebola.jpeg)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Ebolavirus
+        </span>
+      </div>
+    </div>
+    <div
+      className="card-item"
+      onClick={[Function]}
+    >
+      <div
+        className="background-image"
+        style={
+          Object {
+            "backgroundImage": "url(/images/orthopox.png)",
+          }
+        }
+      />
+      <div
+        className="content"
+      >
+        <span
+          className="subtitle"
+        >
+          Orthopoxvirus
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -6,7 +6,7 @@ const InfoSection = ({ short, children, img, title }) => (
     <div style={{ backgroundImage: `url(${img})`, height: `${short ? '90vh' : "100vh"}` }} className = 'info-section'>
         <Fade top>
         <div className = 'info-container'>
-          <h1 className = 'info-title' >{ title }</h1>
+          <h1 data-testid = 'info-title' className = 'info-title' >{ title }</h1>
           { children }
         </div>
         </Fade>      

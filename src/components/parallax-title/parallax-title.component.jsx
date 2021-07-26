@@ -4,7 +4,7 @@ import Flip from 'react-reveal/Flip';
 
 const ParallaxTitle = ({ children }) => (
     
-    <div className = 'parallax-title'>
+    <div data-testid = "parallax-title" className = 'parallax-title'>
         <Flip top cascade>{children}</Flip>
     </div>
 )

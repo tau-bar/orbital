@@ -223,7 +223,8 @@ const Container = (props) => {
     const user = useContext(UserContext);
 
     useEffect(() => {
-        if (props.history.location.state.id) {
+        if (props.history.location.state && user != null) {
+            console.log('test')
             const getVirusData = async () => {
                 if (user !== null) {
                     const virus = await getVirus(user, props.history.location.state.id);
@@ -236,7 +237,7 @@ const Container = (props) => {
             }
             getVirusData();
         }
-      })
+      }, [])
 
     const handleEdit = () => {
         props.history.push({

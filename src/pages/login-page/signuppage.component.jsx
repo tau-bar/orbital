@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Container, Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import { withRouter } from 'react-router-dom';
 import { UserContext } from '../../context/UserProvider'
+import CustomButton from '../../components/custom-button/custom-button.component';
 
 const SignUpPage = ({ history }) => {
   const [values, setValues] = useState({
@@ -72,7 +73,7 @@ const SignUpPage = ({ history }) => {
                     <div>
                         <h1 className = 'loginsignuptitle'>Sign Up</h1>
                     </div>
-                    <form onSubmit = {createUser}>
+                    <form>
                       <CustomTextField
                         label = "Email"
                         type = "username"
@@ -88,9 +89,9 @@ const SignUpPage = ({ history }) => {
                         type = "password"
                         onChange = {handleChange("confirmPassword")}
                       />
-                      <Button variant="contained" color="primary" type = "submit">
-                        Sign Up 
-                      </Button>
+                      <CustomButton filled onClick = {createUser} >
+                        Sign Up <i class="fas fa-user-plus"></i>
+                      </CustomButton>
                     </form>
                     <p>Already have an account? <Link to = "login">Log in.</Link></p>
                 </Container>

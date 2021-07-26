@@ -1,13 +1,16 @@
 @import '../../breakpoints.settings.scss';
 
 .custom-button {
+    font-family: 'Quicksand', sans-serif;
     padding: 10px;
     color: white;
     min-width: 100px;
     font-weight: 200;
+    font-size: 0.8em;
     border: 1px solid white;
     border-radius: 10px; 
     transition: 0.15s linear;
+    background: none;
 
     &:hover {
         background-color: white;
@@ -25,6 +28,7 @@
         background-color: white;
         cursor: pointer;
         color: black;
+        border: 1px solid black;
 
         &:active {
             
@@ -37,7 +41,16 @@
 
     &.map {
         margin: 20px;
+
+        &:hover {
+            background-color: rgb(202, 0, 0);
+            color: white;
+            border: 1px solid black
+    
+        }
     }
+
+    
 }
 
 

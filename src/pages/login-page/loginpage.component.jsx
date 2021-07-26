@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Container, Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './loginpage.styles.scss'
 import CustomTextField from '../../components/text-field/text-field.component';
 import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
 import { withRouter } from 'react-router-dom';
 import { UserContext } from '../../context/UserProvider'
+import CustomButton from '../../components/custom-button/custom-button.component';
 
 
 function LoginPage({ history }) {
@@ -36,20 +37,23 @@ function LoginPage({ history }) {
             password: ''
           })
         })
+        .then(() => alert('Logged in successfully!'))
+        .then(() => history.push(''))
         .catch(error => {
-          alert("Error while signing in.");
-          console.error(error);
-        })
-        .finally(() => {
-          history.push('');
+          if (email === '' || password === '') {
+            alert('Enter your email and password.')
+          } else {
+            alert(error.message)
+          }
+          return;
         })
       }
 
-      // Not satisfied with this, fix next time.
-      const handleGoogleSignIn = (event) => {
+      const handleGoogleSignIn = async (event) => {
         event.preventDefault();
         try {
-          signInWithGoogle();
+          await signInWithGoogle()
+          .then(() => alert('Logged in successfully!'));
         } catch (error) {
           alert(error);
         } finally {
@@ -63,7 +67,7 @@ function LoginPage({ history }) {
                     <div>
                         <h1 className = 'loginsignuptitle'>Login</h1>
                     </div>
-                    <form onSubmit = {signIn}>
+                    <form className = 'login-form'>
                       <CustomTextField
                         label = "Email"
                         type = "username"
@@ -74,12 +78,17 @@ function LoginPage({ history }) {
                         type = "password"
                         onChange = {handleChange("password")}
                       />
-                      <Button variant="contained" color="primary" type = "submit">
-                        Login 
-                      </Button>
+                      <CustomButton onClick = {signIn} filled type = "submit">
+                        Login <i class="fas fa-sign-in-alt"></i>
+                      </CustomButton>
                     </form>
-                    <Button variant="contained" color="primary" onClick = {handleGoogleSignIn}>Or Sign in with Google</Button>
+                    <p>or</p>
+                    <CustomButton color = "white" bgColor = "#438BF5" filled onClick = {handleGoogleSignIn}>
+                    Google Sign-in <i class="fab fa-google"></i>
+                    </CustomButton>
                     <p>Don't have an account? <Link to = "/sign-up">Sign up.</Link></p>
+                    <p><Link to = "/forgot-password">Forgot password?.</Link></p>
+                    
                 </Container>
             </div>
         )

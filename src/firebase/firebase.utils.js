@@ -58,14 +58,46 @@ provider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export const logOut = () => {
+export const logOut = async () => {
   auth.signOut()
   .then(() => {
-    console.log('signed out')
+    alert('Signed out!')
   })
   .catch(error => {
     console.log(error.message)
   })
+}
+
+export const resetPassword = async (email) => {
+  auth.sendPasswordResetEmail(email)
+  .then(() => {
+    alert("Email sent!")
+  })
+  .catch((error) => {
+    console.error(error.message)
+    alert("Something went wrong.")
+  });
+}
+
+export const changePassword = async (newPassword) => {
+  auth.currentUser.updatePassword(newPassword).then(() => {
+    alert("Password successfully changed!")
+  }).catch(error => {
+    alert(error.message)
+  }
+  );
+}
+
+export const deleteUser = async (user) => {
+  const authUser = await auth.currentUser;
+  authUser.delete().then(async () => {
+    alert('User deleted.')
+    const userDocument = await firestore.doc(`users/${user.uid}`);
+    userDocument.delete();
+  }).catch((error) => {
+    alert(error.message)
+    // ...
+  });
 }
 
 
@@ -110,7 +142,6 @@ export const updateVirus = async (user, values) => {
   if (!user || !values.id) return;
   try {
     const virusRef = await firestore.doc(`users/${user.uid}`).collection('userViruses').doc(values.id);
-    console.log(virusRef);
     virusRef.set(values);
   } catch (error) {
     console.error(error.message);

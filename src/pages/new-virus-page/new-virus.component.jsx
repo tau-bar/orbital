@@ -174,7 +174,9 @@ const NewVirusPage = ({ history }) => {
                         onChange = {handleSliderChange("lethality")}
                         valueLabelDisplay="auto" aria-label="slider"/>
                     </CreateCard>
-                    <CustomButton filled onClick = {handleSaveVirus} className ='save-button'>Save!</CustomButton>
+                    <CustomButton filled onClick = {handleSaveVirus} className ='save-button'>
+                    Save <i class="fas fa-save"></i>
+                    </CustomButton>
             </div>
             <div className = "virus-model-container">
                 <Container virusName={values.virusName} virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
