@@ -49,13 +49,11 @@
 
   
 .LoadingAnimation {
-    margin-top: -3%;
+    padding-top: -3%;
     margin-bottom: 3%;
-    background: rgba(0,0,0,1);
 }
 
 .sceneBg {
-    background: rgba(0,0,0,1);
     height:5vh;
     width:100vw;
 }
@@ -81,3 +79,8 @@
     
 }
 
+.virus-name {
+    font-family: 'Signika Negative', sans-serif;
+    color: white;
+
+}

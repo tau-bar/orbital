@@ -196,12 +196,12 @@ const ContainerC = (props) => {
             },
         })
     }
-        const { isMounted , loadingPercentage } = state;
+        const { loadingPercentage } = state;
         return (    
             <div className="sceneBgTwo">
 
                 <div className="buttonContainer">
-                <h1 style={{ color: 'white' }}>{values.virusName}</h1>
+                <h1 className = 'virus-name'>{values.virusName}</h1>
                     <TriggersTooltips></TriggersTooltips>
                     <div className = 'model-buttons'>
                     {props.create ? null : <Button

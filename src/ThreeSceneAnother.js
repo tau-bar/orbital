@@ -240,11 +240,12 @@ const Container = (props) => {
 
     const title = props.modelPath.split('/')
     const realTitle = title[2].split('.')
+    const name = realTitle[0].charAt(0).toUpperCase() + realTitle[0].slice(1); 
     
         return (    
         <div className ='virus-canvas'>
             <div className="LoadingAnimation">
-                <h1 style={{ color: 'white' }}>{realTitle[0]}</h1>
+                <h1 className = "virus-name">{name}</h1>
                 <TriggersTooltips></TriggersTooltips>
             </div>
             <div className="LoadingAnimation" >

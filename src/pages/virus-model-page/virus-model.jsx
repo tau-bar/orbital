@@ -4,6 +4,7 @@ import { getVirus } from '../../firebase/firebase.utils';
 import Container from '../../ThreeSceneAnother';
 import ContainerC from '../../ThreeSceneCopy';
 import '../../pages/new-virus-page/new-virus.styles.scss';
+import './virus-model.styles.scss';
 
 const VirusModelPage = ({ history }) => {
   const arr = history.location.pathname.split('/')
@@ -56,8 +57,6 @@ const VirusModelPage = ({ history }) => {
             getVirusData();
         }
       }, [])
-
-    console.log(values)
     return(
       <div className = "virus-model-loader">
        

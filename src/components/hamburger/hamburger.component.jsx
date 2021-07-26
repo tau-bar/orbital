@@ -52,7 +52,7 @@ const Hamburger = (props) => {
             <p onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus Reproduction <i class="fas fa-lungs-virus"></i></p>
             <p onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map <i class="fas fa-globe-americas"></i></p>
             <p onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create New Virus <i class="fas fa-plus"></i></p>
-            <p onClick = {(linkOnClick('/about'))} className = 'hm-link'>Virus Lethality</p>
+            <p onClick = {(linkOnClick('/about'))} className = 'hm-link'>Virus Lethality <i class="fas fa-skull"></i></p>
             {user ? <p onClick = {(linkOnClick('/profile'))} className = 'hm-link'>My Profile <i class="fas fa-user"></i></p> : '' }
         </div>
         </div>

@@ -1,7 +1,8 @@
 .new-virus-page {
+    background-color: black;
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    width: 100%;
     height: 90vh;
 }
 
@@ -19,18 +20,11 @@
 .virus-model-container {
     display: flex;
     height: 90vh;
-    width: 80vw;
+    width: 70vw;
     background-size: cover;
     background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
 }
 
-.virus-model-loader {
-    display: flex;
-    height: 90vh;
-    width: 100vw;
-    background-size: cover;
-    background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
-}
 
 .create-card {
     padding: 30px;
