@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../../context/UserProvider';
 import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
 import CustomTextField from '../../components/text-field/text-field.component';
-import Container from '../../ThreeScene';
+import Container from '../../ThreeSceneCopy';
 import CreateCard from './create-card.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { withRouter } from 'react-router';
@@ -35,9 +35,9 @@ const NewVirusPage = ({ history }) => {
       ['coronavirus',
         'flavivirus',
         'mobillivirus',
-        'yersenia',
+        'yersinia',
         'ebolavirus',
-        'orthopoxvirus']
+        'orthopox']
 
     useEffect(() => {
       const getVirusData = async () => {
@@ -179,7 +179,7 @@ const NewVirusPage = ({ history }) => {
                     </CustomButton>
             </div>
             <div className = "virus-model-container">
-                <Container virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
+                <Container virusName={values.virusName} virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
             </div>
         </div>
     )

@@ -42,15 +42,18 @@ const Hamburger = (props) => {
             <span class="menu-line menu-line-1"></span>
             <span class="menu-line menu-line-2"></span>
             <span class="menu-line menu-line-3"></span>
+            <span class="menu-line menu-line-4"></span>
           </span>
         </button>
       </div>
     
+
         <div data-testid = "menu-overlay" class={`menu-overlay ${isActive ? "open" : ""}`}>
             <p onClick = {(linkOnClick('/virus'))} className = 'hm-link'>Viruses <i class="fas fa-virus"></i></p>
             <p onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus Reproduction <i class="fas fa-lungs-virus"></i></p>
             <p onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map <i class="fas fa-globe-americas"></i></p>
             <p onClick = {(linkOnClick('/virus/create'))} className = 'hm-link'>Create New Virus <i class="fas fa-plus"></i></p>
+            <p onClick = {(linkOnClick('/about'))} className = 'hm-link'>Virus Lethality</p>
             {user ? <p onClick = {(linkOnClick('/profile'))} className = 'hm-link'>My Profile <i class="fas fa-user"></i></p> : '' }
         </div>
         </div>

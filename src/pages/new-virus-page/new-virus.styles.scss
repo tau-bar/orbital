@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
 }
 
 .virus-modifiers {
@@ -18,9 +18,10 @@
 
 .virus-model-container {
     display: flex;
-    height: 100vh;
+    height: 90vh;
     width: 80vw;
-    background-color: black;
+    background-size: cover;
+    background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
 }
 
 .create-card {

@@ -5,7 +5,7 @@ const LoadingBar = ({ percentage }) => (
     <div data-testid = "loading-bar" className = "LoadingBar">
         <div className = 'percentage-bar'>
             <div className = 'red-bar' style = {{width: `${percentage}%`}}></div></div>
-        Loading virus model: {percentage}%
+        Loading model: {percentage}%
     </div>
 )
 

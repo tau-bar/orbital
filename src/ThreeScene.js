@@ -49,18 +49,15 @@ class VirusModel extends Component {
         this.controls.minDistance=3
         this.controls.maxDistance=8
         this.controls.autoRotate=true
-
         this.controls.update();
-        
         this.renderer = new THREE.WebGLRenderer();
-        //first
         this.renderer.setSize( width *4.5 , height * 6.1) ;
         this.mount.appendChild( this.renderer.domElement );
     };
 
     addLights = () => {
         const lights = [];
-        //color code here
+
         const color = new THREE.Color(0xff0000);
 
         lights[ 0 ] = new THREE.PointLight( color, 1, 0 );
@@ -82,37 +79,12 @@ class VirusModel extends Component {
         this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
     };
 
-    /*
-    handleWindowResize = () => {
-        const width = this.mount.clientWidth;
-        const height = this.mount.clientHeight;
-        //second
-        this.renderer.setSize( width, height);
-        this.camera.aspect = height;
-        this.camera.updateProjectionMatrix();
-    };
-    */
-
-    // Boilerplate code ends here
-
-    //Load obj and mtl file here
-
-
     loadTheModel = () => {
         const loader = new OBJLoader();
         const mtlLoader = new MTLLoader();
 
-        /*
-        mtlLoader.load('/assets/mobillivirus.mtl', function(materials) {
-            materials.preload();
-            loader.setMaterials(materials);   
-        });
-        */    
-        
         loader.load(
-            /*
-            '/assets/eleph.obj'
-            */
+
            this.props.modelPath, 
             ( object ) => {
                 var cent = new THREE.Vector3();
@@ -121,7 +93,6 @@ class VirusModel extends Component {
                 bbox.getCenter(cent);
                 bbox.getSize(size);
 
-                //Rescale the object to normalized space
                 var maxAxis = Math.max(size.x, size.y, size.z);
                 object.scale.multiplyScalar(1.0 / maxAxis);
 
@@ -142,16 +113,9 @@ class VirusModel extends Component {
                 this.props.onProgress(loadingPercentage);
             },
              ( error ) => {
-
                 console.log( 'An error happened:' + error );
-
             }
-        
         );
-        /*
-    })
-    */
-        
     };
             
     render() {
@@ -162,8 +126,7 @@ class VirusModel extends Component {
                     <TriggersTooltips></TriggersTooltips>
                 </div>
             </div>
-        );
-        
+        );  
     }
 }
 
@@ -173,8 +136,7 @@ class Container extends Component {
         this.state = {
             isMounted: true,
             loadingPercentage: 0
-            };
-        
+            };    
     }
     render() {
         const { isMounted, loadingPercentage } = this.state;
@@ -186,9 +148,6 @@ class Container extends Component {
         )
     }
 }
-
-
-
 
 export default Container;
 
