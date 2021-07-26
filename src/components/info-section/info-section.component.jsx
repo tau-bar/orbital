@@ -7,7 +7,7 @@ const InfoSection = ({ short, children, img, title }) => (
         <Fade top>
         <div className = 'info-container'>
           <h1 data-testid = 'info-title' className = 'info-title' >{ title }</h1>
-          <p data-testid = "info-text">{ children }</p>
+          { children }
         </div>
         </Fade>      
       </div>

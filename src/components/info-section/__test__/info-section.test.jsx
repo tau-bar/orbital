@@ -16,6 +16,4 @@ afterEach(cleanup)
 test("info section text correct", () => {
     const titleEl = getByTestId("info-title");
     expect(titleEl.textContent).toBe("Title");
-    const textEl = getByTestId("info-text");
-    expect(textEl.textContent).toBe("Lorem ipsum");
 })
