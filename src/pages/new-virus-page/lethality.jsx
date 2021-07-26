@@ -11,7 +11,7 @@ import CreateCard from './create-card.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { withRouter } from 'react-router';
 
-const NewVirusPage = ({ history }) => {
+const LethalityPage = ({ history }) => {
   
     const [values, setValues] = useState(
         {
@@ -110,7 +110,6 @@ const NewVirusPage = ({ history }) => {
     return (
         <div className = 'new-virus-page'>
             <div className = 'virus-modifiers'>
-                   
                     <CreateCard>
                     <div className = "card-title">
                       <h2>Lethality</h2>
@@ -122,11 +121,13 @@ const NewVirusPage = ({ history }) => {
                     </CreateCard>
                     <CustomButton filled onClick = {handleSaveVirus} className ='save-button'>Save!</CustomButton>
             </div>
-            <div>
-                <Final how={values.lethality}></Final>
+            <div className = 'lethality-final'>
+            <Final how={values.lethality}></Final>
             </div>
         </div>
     )
 }
 
-export default withRouter(NewVirusPage);
+// <Final how={values.lethality}></Final>
+
+export default withRouter(LethalityPage);

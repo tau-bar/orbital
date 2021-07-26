@@ -24,6 +24,14 @@
     background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
 }
 
+.virus-model-loader {
+    display: flex;
+    height: 90vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: url("https://thumbs.gfycat.com/AngryElaborateAldabratortoise-size_restricted.gif");
+}
+
 .create-card {
     padding: 30px;
     margin: 20px;
@@ -33,4 +41,8 @@
 
 .card-title {
     width: 250px;
+}
+
+.lethality-final {
+    width: 70vw;
 }

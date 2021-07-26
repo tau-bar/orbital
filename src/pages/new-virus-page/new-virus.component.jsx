@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../../context/UserProvider';
 import { createNewVirus, getVirus, updateVirus } from '../../firebase/firebase.utils';
 import CustomTextField from '../../components/text-field/text-field.component';
-import Container from '../../ThreeSceneCopy';
+import ContainerC from '../../ThreeSceneCopy';
 import CreateCard from './create-card.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 import { withRouter } from 'react-router';
@@ -26,7 +26,6 @@ const NewVirusPage = ({ history }) => {
             virusType: "",
             primary: "",
             size : 50,
-            lethality: 50,
         }
     )
     const user = useContext(UserContext);
@@ -114,6 +113,7 @@ const NewVirusPage = ({ history }) => {
 
       const classes = useStyles();
 
+      console.log(values);
     return (
         <div className = 'new-virus-page'>
             <div className = 'virus-modifiers'>
@@ -165,21 +165,12 @@ const NewVirusPage = ({ history }) => {
                         onChange = {handleSliderChange("size")}
                         valueLabelDisplay="auto" aria-label="slider"/>
                     </CreateCard>
-                    <CreateCard>
-                    <div className = "card-title">
-                      <h2>Lethality</h2>
-                    </div>
-                        <Slider 
-                        value = {values.lethality}
-                        onChange = {handleSliderChange("lethality")}
-                        valueLabelDisplay="auto" aria-label="slider"/>
-                    </CreateCard>
                     <CustomButton filled onClick = {handleSaveVirus} className ='save-button'>
                     Save <i class="fas fa-save"></i>
                     </CustomButton>
             </div>
             <div className = "virus-model-container">
-                <Container virusName={values.virusName} virusType={values.virusType} colorCode={values.primary} sizeCode={values.size}></Container>
+                <ContainerC create values = {values}></ContainerC>
             </div>
         </div>
     )

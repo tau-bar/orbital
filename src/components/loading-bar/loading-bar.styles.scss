@@ -15,10 +15,17 @@
 }
 
 .LoadingBar {
+    color:white;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     top: 40vh;
-    color: white;
+    color:s white;
+
+    &.mr {
+        margin-right: 25vw;
+    }
+    
 }
+

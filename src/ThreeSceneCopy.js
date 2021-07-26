@@ -1,19 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, useState, useContext, useEffect } from "react";
+import { withRouter } from "react-router";
+import { UserContext } from "./context/UserProvider";
+import { deleteVirus } from "./firebase/firebase.utils";
 import * as THREE from 'three';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import './ThreeScene.scss';
-import './ThreeScene.css';
 import TriggersTooltips from './ToolTip';
 import Button from '@material-ui/core/Button';
 import LoadingBar from "./components/loading-bar/loading-bar.component";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 
 const style = {
     height: "15vh",
-    width: "80vh"
+    width: "50vh"
 
 };
 
@@ -21,9 +25,9 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-    
-        console.log(this.props)
-    }
+        this.state = { width: 0, height: 0 };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+      }
 
     componentDidMount() {
         this.sceneSetup();
@@ -39,9 +43,13 @@ class App extends Component {
         this.controls.dispose();
     }
 
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight});
+      }
+
     sceneSetup = () => {
-        const width = this.mount.clientWidth * 1.61;
-        const height = this.mount.clientHeight * 5.4;
+        const width = window.innerWidth * 0.5;
+        const height = window.innerHeight*0.7;
 
         this.scene = new THREE.Scene();
         this.scene.background = 0xFFFFFF;
@@ -70,7 +78,6 @@ class App extends Component {
     addLights = () => {
         const lights = [];
         const helper = this.props.colorCode
-        console.log(this.props.colorCode)
 
         
         const color = new THREE.Color(this.props.colorCode);
@@ -89,7 +96,6 @@ class App extends Component {
     };
             
     startAnimationLoop = () => {
-        console.log("7")
         this.controls.update();
         this.renderer.render( this.scene, this.camera );
         this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
@@ -109,7 +115,6 @@ class App extends Component {
                 bbox.getSize(size);
                 var maxAxis = Math.max(size.x, size.y, size.z);
                 object.scale.multiplyScalar((this.props.sizeCode / (60 * maxAxis)));
-                console.log("2")
 
                 bbox.setFromObject(object);
                 bbox.getCenter(cent);
@@ -126,7 +131,6 @@ class App extends Component {
 
              ( xhr ) => {
                 const loadingPercentage = Math.ceil(xhr.loaded / xhr.total * 100);
-                console.log( ( loadingPercentage ) + '% loaded' );
                 this.props.onProgress(loadingPercentage);
             },
              ( error ) => {
@@ -139,64 +143,112 @@ class App extends Component {
      
     render() {     
         return (
-            <> 
+            <div> 
             <div style={style} ref={ref => (this.mount = ref)} />
-            </>
+            </div>
         );
     }
 }
 
-class Container extends React.Component {
-
-    constructor(props) {
-        super(props);
+const ContainerC = (props) => {
+    const { values } = props
+    const user = useContext(UserContext);
     
-        this.state = {
+    const [state, setState] = useState(
+        {
+        showComponent: false,
+        isMounted: true,
+        loadingPercentage: 0,
+      }
+      );
+
+     useEffect(() => {
+        setState({
+            ...state, 
             showComponent: false,
-          };
-        this.state = {isOpened: false};
-        this._onButtonClick = this._onButtonClick.bind(this);
-       
-    }
+        }) 
+     }, [values.virusType, values.primary, values.size])
 
-    state = {isMounted: true};
-
-    _onButtonClick() {
-        this.setState({
-          showComponent: !this.state.showComponent,
-        });
+      const onButtonClick = () => {
+          if (values.virusType === "") {
+              alert("Choose a virus type.");
+          } else {
+            setState({
+                ...state,
+                loadingPercentage: 0,
+                showComponent: !state.showComponent,
+            })
+          }
+          
       }
 
-    render() {  
-        console.log(this.props.sizeCode)
-        const {isMounted = true, loadingPercentage = 0} = this.state;
+      const handleDelete = async () => {
+        await deleteVirus(user, values.id)
+        .then(alert('Virus deleted!'))
+        .finally(props.history.push('/virus'))   
+    }
+
+    const handleEdit = () => {
+        props.history.push({
+            pathname: `/virus/create/${values.id}`,
+            state: {
+                id: values.id
+            },
+        })
+    }
+        const { isMounted , loadingPercentage } = state;
         return (    
-            <>
-            <div className="sceneBg">
-                <div className="sceneBg">
-                <h1 style={{ color: 'white' }}>{this.props.virusName}</h1>
+            <div className="sceneBgTwo">
+
+                <div className="buttonContainer">
+                <h1 style={{ color: 'white' }}>{values.virusName}</h1>
                     <TriggersTooltips></TriggersTooltips>
-          <Button
+                    <div className = 'model-buttons'>
+                    {props.create ? null : <Button
+                variant="contained"
+                color="secondary"
+                size = "small"
+                onClick = {handleDelete}
+                
+                startIcon={<DeleteIcon />}
+                >
+                    Delete
+                </Button>}
+               {props.create ? null : <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={handleEdit}
+                    startIcon={<SaveIcon />}
+                >
+                    Save/Edit
+                </Button>}
+          {state.showComponent ? null : <Button
         variant="contained"
         color="secondary"
         size="small"
-        onClick={this._onButtonClick}
+        onClick={onButtonClick}
         startIcon={<PhotoCamera />}
       >
         View Results
-      </Button>       
-                </div>
-                {this.state.showComponent ?
-           <App virusType={this.props.virusType} colorCode={this.props.colorCode} sizeCode={this.props.sizeCode} onProgress={loadingPercentage => this.setState({ loadingPercentage })} />:
+      </Button>    }  
+      </div>
+      </div>
+      
+      <div className="virus-container">
+         
+                {state.showComponent ?
+           <App virusType={values.virusType} colorCode={values.primary} sizeCode={values.size} onProgress={loadingPercentage => setState({ ...state, loadingPercentage })} />:
            null
-        }                {isMounted && loadingPercentage !== 100 && <LoadingBar percentage = { loadingPercentage } ></LoadingBar>}
-             </div>             
-             </>
+    
+        }                {loadingPercentage !== 100 && <LoadingBar mr percentage = { loadingPercentage } ></LoadingBar>}
+             </div>   
+             </div>          
+
             )
     }
-}
 
-export default Container;
+export default withRouter(ContainerC);
 
 
 

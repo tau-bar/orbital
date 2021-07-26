@@ -42,7 +42,6 @@ const Hamburger = (props) => {
             <span class="menu-line menu-line-1"></span>
             <span class="menu-line menu-line-2"></span>
             <span class="menu-line menu-line-3"></span>
-            <span class="menu-line menu-line-4"></span>
           </span>
         </button>
       </div>

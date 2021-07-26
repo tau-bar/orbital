@@ -91,9 +91,9 @@ export const changePassword = async (newPassword) => {
 export const deleteUser = async (user) => {
   const authUser = await auth.currentUser;
   authUser.delete().then(async () => {
-    alert('User deleted.')
     const userDocument = await firestore.doc(`users/${user.uid}`);
-    userDocument.delete();
+    await userDocument.delete();
+    alert('User deleted.')
   }).catch((error) => {
     alert(error.message)
     // ...
@@ -138,7 +138,6 @@ export const getVirus = async (user, virusId) => {
 }
 
 export const updateVirus = async (user, values) => {
-  console.log(values.id)
   if (!user || !values.id) return;
   try {
     const virusRef = await firestore.doc(`users/${user.uid}`).collection('userViruses').doc(values.id);

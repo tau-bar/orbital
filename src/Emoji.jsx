@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import "./Emoji.css";
+import React from 'react';
+import "./Emoji.scss";
 import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
@@ -142,10 +142,6 @@ class Item extends React.Component {
       );
     }
   }
-
-  function refreshPage() {
-    window.location.reload(false);
-  }
   
   class Emoji extends React.Component {
     
@@ -204,15 +200,16 @@ class Item extends React.Component {
         
       };
       return (
-        <div className="App">
+        <div className="emoji-component">
          
       
-          <div className="title">
+          <div className="emoji-title">
             
             <div className="git">
-              <h1>Viruses </h1>
+              <h1 className = 'title-h1'>Viruses </h1>
             </div>
             <button
+              className = 'emoji-button'
               how={10}
               background={"#000000"}
               value={"black"}
@@ -221,6 +218,7 @@ class Item extends React.Component {
               Black Plague 
             </button>
             <button
+            className = 'emoji-button'
               how={3}
               background={"#000000"}
               value={"space"}
@@ -230,6 +228,7 @@ class Item extends React.Component {
             </button>
             
             <button
+            className = 'emoji-button'
               how={0}
               background={"#000000"}
               value={"ebola"}
@@ -238,6 +237,7 @@ class Item extends React.Component {
               Ebola
             </button>
             <button
+            className = 'emoji-button'
               how={0}
               background={"#000000"}
               value={"corona"}
@@ -258,7 +258,6 @@ class Item extends React.Component {
     }
   }
   
-//export default Emoji;
 
 class Final extends React.Component {
 
@@ -286,18 +285,8 @@ class Final extends React.Component {
     
 
   render() {
-      
-      console.log(this.props.sizeCode)
-      const {isMounted = true, loadingPercentage = 0} = this.state;
-      
-
       return (    
-          <>
-          <div className="sceneBg">
-              
-              <div className="sceneBg">
-              
-                  
+          <div className = {`emoji ${this.state.showComponent ? '' : "emoji-fill"}`}>
         <Button
       variant="contained"
       color="secondary"
@@ -307,13 +296,11 @@ class Final extends React.Component {
     >
       View Results
     </Button>                    
-              </div>
         {this.state.showComponent ?
          <Emoji how={this.props.how}  />:
          null
-      }                 
-           </div>     
-           </>
+      }                  
+    </div>
           )      
   }
 }

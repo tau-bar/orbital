@@ -18,7 +18,7 @@ export const virusData = {
   mobillivirus: {
     src:'/images/morbillivirus.png'
   },
-  yersenia: {
+  yersinia: {
 
     src:'/images/yersinia.png'
   },

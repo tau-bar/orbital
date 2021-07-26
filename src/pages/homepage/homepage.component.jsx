@@ -41,7 +41,7 @@ const Home = ({ history }) => {
       </InfoSection>
       
       <InfoSection img = {pandemic} title = "What is a pandemic?">
-        <p>Description of pandemic.</p>
+        <p>Pandemics are diseases that occur over a large geogrphic area.</p>
         <p>Scroll down to see the various pandemics over the course of history... ☣️</p>
       </InfoSection>
       <Timeline/>
