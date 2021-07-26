@@ -35,7 +35,7 @@ const Hamburger = (props) => {
           }  
         
         </div>
-        <div onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
+        <div data-testid = "hamburger" onClick = {(event) => hamburgerOnClick(event)} className ={`menu ${isActive ? "open" : ""}`}>
         <span class="menu-circle"></span>
         <button href="#" class="menu-link">
           <span class="menu-icon">
@@ -46,7 +46,7 @@ const Hamburger = (props) => {
         </button>
       </div>
     
-        <div class={`menu-overlay ${isActive ? "open" : ""}`}>
+        <div data-testid = "menu-overlay" class={`menu-overlay ${isActive ? "open" : ""}`}>
             <p onClick = {(linkOnClick('/virus'))} className = 'hm-link'>Viruses <i class="fas fa-virus"></i></p>
             <p onClick = {(linkOnClick('/body'))} className = 'hm-link'>Virus Reproduction <i class="fas fa-lungs-virus"></i></p>
             <p onClick = {(linkOnClick('/map'))} className = 'hm-link'>Map <i class="fas fa-globe-americas"></i></p>
